@@ -61,7 +61,7 @@ jobs:
           discussion_category_name: "General"
           body_path: ${{ github.workspace }}-CHANGELOG.txt
           files: |
-            breadcrumbs/main.pdf
+            out/main.pdf
 
       - name: Notify Beta Readers
         uses: fjogeleit/http-request-action@v1
@@ -69,4 +69,4 @@ jobs:
           url: 'https://n8n.viz.li/webhook/4cbf803f-42df-4bd1-9eac-898a5435907d'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}", "version" : "${{ env.RELEASE_VERSION }}", "bookURL": "https://raw.githubusercontent.com/authwit/book-NigerianBizOpsBlueprint/blob/main/breadcrumbs/main.pdf" }'
+          data: '{"releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}", "version" : "${{ env.RELEASE_VERSION }}", "bookURL": "https://raw.githubusercontent.com/authwit/book-NigerianBizOpsBlueprint/blob/main/out/main.pdf" }'
