@@ -1,1 +1,1 @@
-### The Nigerian Business Opportunity Blueprint: Your Global Guide to Nigerian Market Entry - Outline
+### The Nigerian Business Opportunity Blueprint: Your Global Guide to Nigerian Market Entry
