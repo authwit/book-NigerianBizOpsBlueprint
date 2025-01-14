@@ -1,5 +1,9 @@
 name: Compile Latex and Release PDF
 
+permissions:
+  contents: write
+  discussions: write
+
 on:
   push:
     branches: [ main ]
@@ -46,7 +50,16 @@ jobs:
           latexmk_use_xelatex: true
 
       - name: Generate Changelog
-        run: git log ${{ env.CURRENT_VERSION }}..${{ env.RELEASE_VERSION }} --pretty=%s --first-parent > ${{ github.workspace }}-CHANGELOG.txt
+        run: |
+          # Check if previous version tag exists
+          if git rev-parse ${{ env.CURRENT_VERSION }} >/dev/null 2>&1; then
+            # If it exists, generate changelog from previous version
+            git log ${{ env.CURRENT_VERSION }}..${{ env.RELEASE_VERSION }} --pretty=%s --first-parent > ${{ github.workspace }}-CHANGELOG.txt
+          else
+            # If it doesn't exist, get all commits
+            git log --pretty=%s --first-parent > ${{ github.workspace }}-CHANGELOG.txt
+          fi
+        continue-on-error: true
 
       - name: Configure Git
         run: |
