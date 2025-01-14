@@ -1,0 +1,229 @@
+\documentclass[11pt,letterpaper,openany]{book}
+
+% Essential packages in correct loading order
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{fancyhdr}
+\usepackage{etoc}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{afterpage}
+\usepackage{wrapfig}
+\usepackage{tcolorbox}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[nameinlink]{cleveref}
+\usepackage{bookmark}
+\usepackage{pgf-pie}  % For pie charts
+\usepackage{placeins} % For float placement
+
+% Fix float placement
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+% Define pie chart colors
+\definecolor{piecolor1}{RGB}{51,153,255}
+\definecolor{piecolor2}{RGB}{0,102,0}
+\definecolor{piecolor3}{RGB}{153,0,0}
+\definecolor{piecolor4}{RGB}{255,153,0}
+
+% For better figure placement
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.7}
+
+% Fix itemize spacing
+\usepackage{enumitem}
+\setlist[itemize]{topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt}
+
+% Additional TikZ libraries
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{calc}
+
+% For better table formatting
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+
+% Fix page breaks
+\raggedbottom
+
+% Fix chapter spacing
+\titlespacing*{\chapter}{0pt}{-50pt}{40pt}
+
+% TikZ libraries
+\usetikzlibrary{arrows,shapes,positioning,shadows,trees}
+
+% Color definitions
+\definecolor{primarydark}{RGB}{0,71,187}     % Deep Blue
+\definecolor{primary}{RGB}{51,153,255}       % Bright Blue
+\definecolor{primarylight}{RGB}{204,229,255} % Light Blue
+\definecolor{secondarydark}{RGB}{0,102,0}    % Deep Green
+\definecolor{secondary}{RGB}{51,204,51}      % Bright Green
+\definecolor{secondarylight}{RGB}{229,255,229} % Light Green
+\definecolor{accentdark}{RGB}{153,0,0}       % Deep Red
+\definecolor{accent}{RGB}{255,51,51}         % Bright Red
+\definecolor{accentlight}{RGB}{255,204,204}  % Light Red
+
+% Chapter and section styling
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries\color{primarydark}}
+{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+\titleformat{\section}
+{\normalfont\Large\bfseries\color{primary}}
+{\thesection}{1em}{}
+
+\titleformat{\subsection}
+{\normalfont\large\bfseries\color{primarydark}}
+{\thesubsection}{1em}{}
+
+% Table of contents styling
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftchapfont}{\color{primarydark}\bfseries}
+\renewcommand{\cftsecfont}{\color{primary}}
+\renewcommand{\cftsubsecfont}{\color{primarydark}}
+
+% Header and footer styling
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyfoot[C]{\textcolor{primary}{\rule{0.5\textwidth}{0.4pt}}}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primarydark,
+    filecolor=accent,
+    urlcolor=secondary,
+    pdftitle={The Nigerian Business Opportunity Blueprint},
+    pdfauthor={Dele Omotosho, Counseal},
+    pdfsubject={Nigerian Market Entry Guide},
+    pdfkeywords={Nigeria, Business, Market Entry, Diaspora, Investment},
+}
+
+% Custom box styles
+\newtcolorbox{warningbox}{
+    colback=accentlight,
+    colframe=accentdark,
+    title=Warning,
+    fonttitle=\bfseries
+}
+
+\newtcolorbox{importantbox}{
+    colback=secondarylight,
+    colframe=secondarydark,
+    title=Important,
+    fonttitle=\bfseries
+}
+
+\newtcolorbox{regionalbox}{
+    colback=primarylight,
+    colframe=primarydark,
+    title=Regional Insight,
+    fonttitle=\bfseries
+}
+
+\newtcolorbox{workshopbox}{
+    colback=white,
+    colframe=primary,
+    title=Chapter Workshop,
+    fonttitle=\bfseries
+}
+
+\newtcolorbox{communitybox}{
+    colback=secondarylight,
+    colframe=secondary,
+    title=Africa Growth Circle Community,
+    fonttitle=\bfseries
+}
+
+% Listing style
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    commentstyle=\color{accentdark},
+    keywordstyle=\color{primarydark},
+    stringstyle=\color{secondary},
+    numbers=left,
+    numberstyle=\tiny\color{primary},
+    numbersep=5pt,
+    frame=single,
+    framesep=5pt,
+    rulecolor=\color{primary},
+}
+
+% Caption style
+\DeclareCaptionFont{primarydarkcolor}{\color{primarydark}}
+\captionsetup{
+    font=small,
+    labelfont={primarydarkcolor,bf},
+    margin=10pt
+}
+
+% Set headheight
+\setlength{\headheight}{14pt}
+
+% Define current date command
+\newcommand{\currentdate}{\today}
+
+\begin{document}
+
+    \frontmatter
+
+    \begin{titlepage}
+        \centering
+        \vspace*{2cm}
+        {\Huge\bfseries\color{primarydark} The Nigerian Business\\Opportunity Blueprint\par}
+        \vspace{1cm}
+        {\Large\color{primary} Your Global Guide to Nigerian Market Entry\par}
+        \vspace{2cm}
+        {\Large\itshape Dele Omotosho, Counseal.com\par}
+        \vspace{1cm}
+        {\large Empowering Nigerian Dreams Through Global Access\par}
+        \vfill
+        {\large Join the Africa Growth Circle Community at circle.counseal.com\par}
+        \vspace{1cm}
+        {\large \currentdate\par}
+    \end{titlepage}
+
+    \tableofcontents
+
+    \mainmatter
+
+    \include{chapters/00-introduction}
+    \include{chapters/01-nigerian-business-landscape}
+    \include{chapters/02-entry-strategy}
+    \include{chapters/03-success-stories}
+    \include{chapters/04-first-90-days}
+    \include{chapters/05-financial-planning}
+    \include{chapters/06-risk-management}
+    \include{chapters/07-local-network}
+    \include{chapters/08-technology-operations}
+    \include{chapters/09-growth-scaling}
+    \include{chapters/10-future-proofing}
+
+    \backmatter
+
+    \include{appendix/templates}
+    \include{appendix/checklists}
+    \include{appendix/directory}
+    \include{appendix/resources}
+    \include{appendix/africa-growth-circle}
+
+\end{document}

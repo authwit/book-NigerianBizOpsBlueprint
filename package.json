@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "ai-digest": "^1.0.7"
+  },
+  "scripts": {
+    "digest": "rm chapters-appendix.md  && npx ai-digest -i chapters -o 00-chapters.md && npx ai-digest -i appendix/ -o 01-appendix.md && cat *.md > chapters-appendix.md && rm -rf 00-chapters.md 01-appendix.md"
+  }
+}
