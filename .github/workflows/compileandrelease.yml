@@ -87,7 +87,7 @@ jobs:
 
       - name: Delete existing tag if present
         run: |
-          git tag -d ${{ env.RELEASE_VERSION }} || true
+          git tag -d ${{ env.RELEASE_VERSION }} || trueºº
           git push origin :refs/tags/${{ env.RELEASE_VERSION }} || true
         continue-on-error: true
 

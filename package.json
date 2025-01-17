@@ -4,6 +4,8 @@
   },
   "scripts": {
     "digest": "npx ai-digest -o book.md",
-    "build": "pdflatex -file-line-error -interaction=nonstopmode -synctex=1 -output-format=pdf -jobname=nigerian_biz_ops_blueprint_ebook -output-directory=/Users/deletosh/@projects/book-NigerianBizOpsBlueprint/out -aux-directory=/Users/deletosh/@projects/book-NigerianBizOpsBlueprint/auxil main.tex"
+    "build-pdf": "pdflatex -file-line-error -interaction=nonstopmode -synctex=1 -output-format=pdf -jobname=nigerian_biz_ops_blueprint_ebook -output-directory=/Users/deletosh/@projects/book-NigerianBizOpsBlueprint/out -aux-directory=/Users/deletosh/@projects/book-NigerianBizOpsBlueprint/auxil main.tex",
+    "build-epub": "./build-epub.sh",
+    "build": "yarn build-epub && yarn build-pdf"
   }
 }

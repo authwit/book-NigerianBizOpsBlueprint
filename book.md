@@ -102,7 +102,7 @@ jobs:
 
       - name: Delete existing tag if present
         run: |
-          git tag -d ${{ env.RELEASE_VERSION }} || true
+          git tag -d ${{ env.RELEASE_VERSION }} || trueºº
           git push origin :refs/tags/${{ env.RELEASE_VERSION }} || true
         continue-on-error: true
 
@@ -589,176 +589,247 @@ While this book provides comprehensive guidance, always consult with qualified p
 \chapter{Understanding the Nigerian Business Landscape}
 
 \begin{importantbox}
-This chapter provides a comprehensive overview of Nigeria's current business environment, focusing on key sectors, regulatory frameworks, and regional opportunities. Data presented is current as of January 2024.
+This chapter cuts through the noise to give you a clear, practical understanding of Nigeria's business environment. We'll explore what really matters for your success, backed by real experiences and current market insights.
 \end{importantbox}
 
 \section{The Real Nigeria: Beyond the Headlines}
 
-\subsection{Economic Overview}
-Nigeria's economy presents unique opportunities...
+I remember sitting in a Boston coffee shop in 2015, meeting with a potential investor who was interested in Nigerian tech opportunities. As he stirred his cappuccino, he said something that still makes me smile: "Dele, isn't it too risky? I mean, with all the... you know..." He trailed off, gesturing vaguely at imagined chaos.
 
-\begin{figure}[h]
-    \centering
-    \begin{tikzpicture}
-        % Placeholder for GDP Growth Chart
-        \draw (0,0) rectangle (10,6);
-        \node at (5,3) {GDP Growth Trend 2020-2024};
-    \end{tikzpicture}
-    \caption{Nigerian Economic Indicators 2020-2024}
-\end{figure}
+Several weeks later, I watched that same investor standing in Victoria Island, Lagos, completely transformed. "This isn't anything like what I expected," he admitted, watching streams of young professionals heading to their fintech jobs, banks, and digital agencies. "Why doesn't anyone show this side of Nigeria?"
 
-\subsection{Market Dynamics}
-Key market trends shaping opportunities...
+This disconnect between perception and reality is something I've encountered countless times in my journey from Boston's tech scene to building Counseal. It reminds me of what we call "first-time fever" - that initial hesitation that nearly every successful entrepreneur I've worked with had to overcome. Let's address some common misconceptions I hear regularly:
 
-\begin{importantbox}
-Understanding market dynamics is crucial for:
-\begin{itemize}
-    \item Identifying entry points
-    \item Assessing competition
-    \item Planning resource allocation
-    \item Developing pricing strategies
-\end{itemize}
-\end{importantbox}
+% TODO @illustrate: Create a "First-Time Fever" cartoon showing transformation from hesitant to confident entrepreneur
+
+\subsection{Common Misconceptions vs Reality}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+    \toprule
+    \textbf{Misconception} & \textbf{Reality I've Experienced} \\
+    \midrule
+    "Everything moves too slowly" & While some processes take time, I've seen companies complete market entry in under 3 months \\
+    "You need political connections" & Several successful entrepreneurs succeed through standard business practices \\
+    "Technology infrastructure is poor" & Lagos's tech hub rivals many global cities; I run my entire platform from here \\
+    "Too much corruption" & Clear compliance processes exist; clients regularly succeed without compromising \\
+    \bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Economic Overview and Market Dynamics}
+
+% TODO @diagram: Create a "Nigerian Business River" illustration showing the three dynamics as tributaries merging into a powerful main stream
+
+Think of Nigeria's economy as a rapidly flowing river – powerful, sometimes unpredictable, but full of opportunity if you know how to navigate it. In my years helping global entrepreneurs enter this market, I've observed three fundamental dynamics that shape success:
+
+1. \textbf{The Scale Advantage}
+
+   Nigeria's market size creates what I call the "multiplication effect." When a Canadian agritech company expand here. Their initial pilot with 100 farmers quickly scaled to 10,000 because word of mouth travels fast in connected communities. The same infrastructure investment that serves 100 can often serve 10,000 with minimal additional cost.
+
+2. \textbf{The Innovation Appetite}
+
+   Contrary to what many think, Nigerians are early adopters. A fintech company where surprised when their new payment solution gained traction faster in Lagos than in London. Why? Because Nigerians actively seek better solutions, and word spreads rapidly through tight-knit business networks.
+
+3. \textbf{The Adaptation Advantage}
+
+   Those who succeed here learn to turn challenges into opportunities. One client entered during a foreign exchange restriction period. Instead of retreating, they built a local supplier network that now gives them a competitive edge, even after restrictions eased.
 
 \section{Key Business Sectors and Growth Areas}
 
-\begin{figure}[h]
-    \centering
-    \begin{tikzpicture}
-        % Placeholder for Sector Growth Chart
-        \draw (0,0) rectangle (10,6);
-        \node at (5,3) {Sector Growth Rates 2024};
-    \end{tikzpicture}
-    \caption{High-Growth Sectors in Nigeria}
-\end{figure}
+\subsection{Understanding Nigerian Business Culture}
+Before we dive into specific sectors, let me share something crucial about Nigerian business culture that I call the "Three R's": Relationships, Respect, and Reciprocity.
 
-\subsection{Financial Services \& FinTech}
-Analysis of the financial services landscape...
-
-\subsection{Technology \& Digital Services}
-Overview of Nigeria's tech ecosystem...
-
-\subsection{Agriculture \& AgriTech}
-Opportunities in agricultural innovation...
-
-\subsection{Trade \& Logistics}
-Analysis of import/export dynamics...
-
-\section{Regulatory Environment at a Glance}
-
-\begin{warningbox}
-Regulatory requirements can change frequently. Always verify current requirements through official channels or your legal counsel.
-\end{warningbox}
-
-\subsection{Key Regulatory Bodies}
+\begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{The Three R's of Nigerian Business}]
 \begin{itemize}
-    \item Corporate Affairs Commission (CAC)
-    \item Central Bank of Nigeria (CBN)
-    \item Nigerian Investment Promotion Commission (NIPC)
-    \item Federal Inland Revenue Service (FIRS)
+    \item \textbf{Relationships:} Business here is personal. The Nigerian saying "Àjọjẹ ò dùn bí àjọgbé" (Eating together isn't as sweet as living together — I'm Yoruba and will bring in a few of these, it will be fun) captures this perfectly. It means lasting relationships matter more than quick transactions.
+    \item \textbf{Respect:} Age, experience, and position matter. I've seen countless deals succeed or fail based on how well foreign entrepreneurs understood and showed appropriate respect in meetings.
+    \item \textbf{Reciprocity:} Nigerians believe in "Ọwọ́ oníwọ̀wọ́ ní í mọ́" (A generous hand will always be clean). Building mutual benefit into your business relationships is crucial.
+\end{itemize}
+\end{tcolorbox}
+
+\begin{tikzpicture}
+    % Define styles
+    \tikzset{
+        symbol/.style={circle, minimum size=40pt, very thick, draw=primarydark, fill=white},
+        connection/.style={->, thick, primarydark},
+    }
+
+    % Central circle
+    \node[circle, minimum size=80pt, very thick, draw=primarydark, fill=white] (center) at (0,0) {\textbf{Nigerian\\Business\\Culture}};
+
+    % Three R's symbols
+    \node[symbol] (relationships) at (0,3) {\includegraphics[width=30pt]{figures/handshake-icon}};
+    \node[symbol] (respect) at (-2.6,-1.5) {\includegraphics[width=30pt]{figures/elder-icon}};
+    \node[symbol] (reciprocity) at (2.6,-1.5) {\includegraphics[width=30pt]{figures/exchange-icon}};
+
+    % Labels
+    \node[above=0.2cm of relationships] {\textbf{Relationships}};
+    \node[below left=0.2cm of respect] {\textbf{Respect}};
+    \node[below right=0.2cm of reciprocity] {\textbf{Reciprocity}};
+
+    % Connections
+    \draw[connection] (relationships) -- (center);
+    \draw[connection] (respect) -- (center);
+    \draw[connection] (reciprocity) -- (center);
+
+    % Traditional patterns
+    \foreach \angle in {0,120,240} {
+        \draw[primarydark, pattern=north east lines]
+            (\angle:2.8) arc (\angle:\angle+30:2.8);
+    }
+\end{tikzpicture}
+% TODO @diagram: Timeline showing how relationships develop in Nigerian business context
+
+\begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{High-Potential Sectors}]
+\begin{itemize}
+    \item \textbf{Financial Services \& Fintech:} Growing at unprecedented rates with regular new entrants
+    \item \textbf{Agriculture \& AgriTech:} Massive modernization opportunity
+    \item \textbf{E-commerce \& Logistics:} Rapidly evolving with urban growth
+    \item \textbf{Education Technology:} Huge demand with growing middle class
+    \item \textbf{Healthcare Innovation:} Untapped potential for tech solutions
+\end{itemize}
+\end{tcolorbox}
+
+\section{Regional Perspectives and Opportunities}
+
+\subsection{United Kingdom Perspective}
+
+% TODO @diagram: Create visual comparison of UK vs Nigerian regulatory frameworks showing overlaps
+
+Let me share a story that perfectly illustrates the UK-Nigeria connection. There was this fintech that initially struggled with what I call the "Commonwealth Paradox" - where similarities between markets can actually blind you to important differences.
+When I work with UK entrepreneurs, particularly in financial services, I often start by highlighting what I call the "Commonwealth Advantage." It's not just about shared legal frameworks – it's about cultural understanding that runs deeper than most realize.
+
+Take Toun (name changed), a London-based fintech founder. She initially saw Nigerian banking regulations as a barrier. But once she recognized how closely they mirrored UK standards, she turned compliance into a competitive advantage. Her company now processes millions in cross-border transactions monthly.
+
+\textbf{Key Success Factors for UK Companies:}
+\begin{itemize}
+    \item Leverage similar regulatory frameworks
+    \item Utilize existing UK-Nigeria business networks
+    \item Build on shared professional practices
+    \item Capitalize on historical business connections
 \end{itemize}
 
-\section{Regional Perspectives}
+\subsection{United States Perspective}
 
-\begin{regionalbox}{United Kingdom Perspective}
-\textbf{Financial Services \& Property Investment}
+\begin{tikzpicture}
+    % Define styles
+    \tikzset{
+        box/.style={rectangle, rounded corners, minimum width=120pt,
+                   minimum height=40pt, draw=primarydark, very thick, fill=white},
+        arrow/.style={->, thick, primarydark},
+    }
+
+    % Title
+    \node[align=center] at (0,4) {\Large Perception vs Reality\\of Nigerian Business};
+
+    % Perception column
+    \node[box] (p1) at (-3,2) {\begin{tabular}{c}\small "Slow"\\\small Processes\end{tabular}};
+    \node[box] (p2) at (-3,0) {\begin{tabular}{c}\small "Limited"\\\small Infrastructure\end{tabular}};
+    \node[box] (p3) at (-3,-2) {\begin{tabular}{c}\small "High Risk"\\\small Market\end{tabular}};
+
+    % Reality column
+    \node[box] (r1) at (3,2) {\begin{tabular}{c}\small 3-Month\\\small Market Entry\end{tabular}};
+    \node[box] (r2) at (3,0) {\begin{tabular}{c}\small Tech Hub\\\small Excellence\end{tabular}};
+    \node[box] (r3) at (3,-2) {\begin{tabular}{c}\small Clear Compliance\\\small Framework\end{tabular}};
+
+    % Connecting arrows
+    \draw[arrow] (p1) -- (r1);
+    \draw[arrow] (p2) -- (r2);
+    \draw[arrow] (p3) -- (r3);
+
+    % Labels
+    \node[above] at (-3,3) {\textbf{Perception}};
+    \node[above] at (3,3) {\textbf{Reality}};
+\end{tikzpicture}
+
+There's something I call the "Silicon Valley Shift" that I've observed repeatedly with US companies. It's that moment when they realize that Nigeria isn't just another market to conquer, but a unique ecosystem that rewards those who adapt their scaling playbook.
+American entrepreneurs often bring what I call "scale thinking" to Nigeria, and when properly adapted, it works brilliantly. I remember a San Francisco-based startup founder who initially struggled with local user acquisition. Once he adapted his growth strategies to leverage Nigeria's community-based business culture, his education technology platform grew faster here than in any other market.
+
+\textbf{Key Success Factors for US Companies:}
 \begin{itemize}
-    \item Regulatory alignment opportunities
-    \item Cross-border transaction frameworks
-    \item Property market analysis
-    \item Success patterns in UK-Nigeria ventures
+    \item Adapt rapid scaling methodologies to local context
+    \item Leverage Nigeria's youth demographic
+    \item Focus on mobile-first strategies
+    \item Build strong local teams while maintaining global standards
 \end{itemize}
-\end{regionalbox}
 
-\begin{regionalbox}{United States Perspective}
-\textbf{Tech \& Digital Services}
+\subsection{UAE Perspective}
+
+% TODO @diagram: Map showing UAE-Nigeria trade corridors and business relationship flows
+
+The UAE-Nigeria corridor is what I like to call a "Natural Bridge." There's a fascinating similarity in how both cultures approach business relationships - what Emiratis call "majlis" closely mirrors our Nigerian concept of "ìgbìmọ̀" (council/gathering for decision-making).
+UAE businesses often understand Nigeria's trading dynamics intuitively. I've noticed they excel at building the personal relationships crucial for success here. One Dubai-based logistics company I advised succeeded by combining UAE's trading expertise with Nigeria's local market knowledge.
+
+\textbf{Key Success Factors for UAE Companies:}
 \begin{itemize}
-    \item Tech ecosystem overview
-    \item Digital infrastructure assessment
-    \item IP protection frameworks
-    \item US-Nigeria tech partnership patterns
+    \item Utilize existing trade corridors
+    \item Apply familiar business relationship models
+    \item Leverage similar market dynamics
+    \item Build on existing UAE-Africa trade networks
 \end{itemize}
-\end{regionalbox}
 
-\begin{regionalbox}{UAE Perspective}
-\textbf{Trade \& Logistics}
+\subsection{Canadian Perspective}
+
+% TODO @illustrate: Create visual showing adaptation of Canadian agricultural techniques to Nigerian contexts
+
+What fascinates me about Canadian companies is their approach to what I call "Collaborative Innovation." A perfect example is how they typically handle what we Nigerians call "ọwọ́ pọ̀" (joining hands) - building consensus and community buy-in before implementing new technologies.
+Canadian companies, especially in agriculture and renewable energy, often find surprising synergies in Nigeria. A Saskatchewan-based agritech company succeeded by adapting their prairie farming solutions to Nigerian conditions. Their approach to farmer education particularly resonated with local communities.
+
+\textbf{Key Success Factors for Canadian Companies:}
 \begin{itemize}
-    \item Trade corridor analysis
-    \item Import/export frameworks
-    \item Logistics infrastructure
-    \item UAE-Nigeria trade patterns
+    \item Focus on sustainable development
+    \item Leverage expertise in natural resources
+    \item Apply collaborative business models
+    \item Build on strong educational links
 \end{itemize}
-\end{regionalbox}
 
-\begin{regionalbox}{Canadian Perspective}
-\textbf{AgriTech \& Renewable Energy}
-\begin{itemize}
-    \item Agricultural sector analysis
-    \item Renewable energy opportunities
-    \item Environmental considerations
-    \item Canada-Nigeria partnership patterns
-\end{itemize}
-\end{regionalbox}
+\section{Real-World Application Workshop}
 
-\section{Market Entry Considerations}
-
-\subsection{Common Myths vs Reality}
-\begin{center}
-\begin{tabular}{p{0.45\textwidth}|p{0.45\textwidth}}
-    \textbf{Myth} & \textbf{Reality} \\
-    \hline
-    Complex regulatory environment & Streamlined processes for key sectors \\
-    Limited market access & Multiple entry points available \\
-    High barrier to entry & Sector-specific opportunities \\
-    Limited tech infrastructure & Rapidly developing ecosystem \\
-\end{tabular}
-\end{center}
-
-\begin{communitybox}
-Access additional market insights and real-time updates on the Africa Growth Circle:
-\begin{itemize}
-    \item Monthly market intelligence briefings
-    \item Sector-specific discussion forums
-    \item Expert roundtables and Q\&A sessions
-    \item Regional networking events
-\end{itemize}
-Visit circle.counseal.com for more information.
-\end{communitybox}
-
-% End of chapter workshop
 \begin{workshopbox}
-\textbf{Chapter 1 Market Analysis Workshop}
-
-Complete these exercises to apply chapter insights to your business:
+\textbf{Market Opportunity Assessment Tool}
 
 1. Sector Analysis
 \begin{itemize}
-    \item Identify your target sector: \_\_\_\_\_\_\_\_\_
-    \item List three key opportunities: \_\_\_\_\_\_\_\_\_
-    \item List three main challenges: \_\_\_\_\_\_\_\_\_
+    \item Your target sector: \_\_\_\_\_\_\_\_\_
+    \item Primary customer segment: \_\_\_\_\_\_\_\_\_
+    \item Key competitors: \_\_\_\_\_\_\_\_\_
+    \item Market gap identified: \_\_\_\_\_\_\_\_\_
 \end{itemize}
 
-2. Regulatory Mapping
+2. Regional Advantage Assessment
 \begin{itemize}
-    \item Key regulations affecting your business: \_\_\_\_\_\_\_\_\_
-    \item Required licenses/permits: \_\_\_\_\_\_\_\_\_
-    \item Compliance timeline: \_\_\_\_\_\_\_\_\_
+    \item Your region's key strengths: \_\_\_\_\_\_\_\_\_
+    \item Cultural alignment factors: \_\_\_\_\_\_\_\_\_
+    \item Existing network advantages: \_\_\_\_\_\_\_\_\_
 \end{itemize}
 
-3. Market Entry Planning
+3. Reality Check
 \begin{itemize}
-    \item Preferred entry model: \_\_\_\_\_\_\_\_\_
-    \item Initial market focus: \_\_\_\_\_\_\_\_\_
-    \item Resource requirements: \_\_\_\_\_\_\_\_\_
+    \item Listed assumptions: \_\_\_\_\_\_\_\_\_
+    \item Verification strategy: \_\_\_\_\_\_\_\_\_
+    \item Local validation plan: \_\_\_\_\_\_\_\_\_
 \end{itemize}
-
-Access additional worksheets and templates on the Africa Growth Circle platform.
 \end{workshopbox}
 
-% Next steps teaser
+\begin{communitybox}
+Connect with fellow entrepreneurs and access additional resources on the Africa Growth Circle:
+\begin{itemize}
+    \item Monthly market updates
+    \item Sector-specific discussion groups
+    \item Regional networking events
+    \item Expert office hours
+\end{itemize}
+Visit \href{https://viz.li/csl-book-agc}{circle.counseal.com} to join the conversation.
+\end{communitybox}
+
 \begin{importantbox}
-In Chapter 2, we'll build on this foundation to develop your entry strategy, including detailed planning frameworks and implementation guides specific to your sector and region.
+In Chapter 2, we'll build on this foundation to develop your specific entry strategy, including detailed planning frameworks and implementation guides tailored to your sector and region.
 \end{importantbox}
+
+% TODO @illustrate: Create infographic showing the contrast between common perceptions and reality of doing business in Nigeria
+% TODO @diagram: Visual representation of the "multiplication effect" concept
+% TODO @qr: Link to Africa Growth Circle registration page
 ```
 
 # chapters/02-entry-strategy.tex
@@ -2924,6 +2995,10 @@ This is a binary file of the type: Image
 
 This is a binary file of the type: Image
 
+# figures/person-icon.jpg
+
+This is a binary file of the type: Image
+
 # main.tex
 
 ```tex
@@ -3136,7 +3211,7 @@ This is a binary file of the type: Image
     \mainmatter
 
     \include{chapters/00-introduction}
-%    \include{chapters/01-nigerian-business-landscape}
+    \include{chapters/01-nigerian-business-landscape}
 %    \include{chapters/02-entry-strategy}
 %    \include{chapters/03-success-stories}
 %    \include{chapters/04-first-90-days}
@@ -3171,7 +3246,9 @@ This is a binary file of the type: Binary
   },
   "scripts": {
     "digest": "npx ai-digest -o book.md",
-    "build": "pdflatex -file-line-error -interaction=nonstopmode -synctex=1 -output-format=pdf -jobname=nigerian_biz_ops_blueprint_ebook -output-directory=/Users/deletosh/@projects/book-NigerianBizOpsBlueprint/out -aux-directory=/Users/deletosh/@projects/book-NigerianBizOpsBlueprint/auxil main.tex"
+    "build-pdf": "pdflatex -file-line-error -interaction=nonstopmode -synctex=1 -output-format=pdf -jobname=nigerian_biz_ops_blueprint_ebook -output-directory=/Users/deletosh/@projects/book-NigerianBizOpsBlueprint/out -aux-directory=/Users/deletosh/@projects/book-NigerianBizOpsBlueprint/auxil main.tex",
+    "build-epub": "./build-epub.sh",
+    "build": "yarn build-epub && yarn build-pdf"
   }
 }
 
