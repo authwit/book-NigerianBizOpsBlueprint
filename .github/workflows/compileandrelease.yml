@@ -47,6 +47,7 @@ jobs:
         with:
           working_directory: ./
           root_file: main.tex
+          args: '-jobname=nigerian_biz_ops_blueprint_ebook'
           latexmk_use_xelatex: true
 
       - name: Generate Changelog
@@ -83,7 +84,7 @@ jobs:
           tag: ${{ env.RELEASE_VERSION }}
           name: Release ${{ env.RELEASE_VERSION }}
           bodyFile: ${{ github.workspace }}-CHANGELOG.txt
-          artifacts: "out/main.pdf"
+          artifacts: "nigerian_biz_ops_blueprint_ebook.pdf"  # Changed from main.pdf
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           replacesArtifacts: true
@@ -94,4 +95,4 @@ jobs:
           url: 'https://n8n.viz.li/webhook/4cbf803f-42df-4bd1-9eac-898a5435907d'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}", "version" : "${{ env.RELEASE_VERSION }}", "bookURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/main.pdf" }'
+          data: '{"releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}", "version" : "${{ env.RELEASE_VERSION }}", "bookURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.pdf" }'

@@ -1,12 +1,366 @@
-# 00-introduction.tex
+# .aidigestignore
+
+```
+.idea
+.helpers
+auxil
+out/*
+!out/main.pdf
+**/*.DS_Store
+node_modules
+```
+
+# .github/workflows/compileandrelease.yml
+
+```yml
+name: Compile Latex and Release PDF
+
+permissions:
+  contents: write
+  discussions: write
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  SEMVERBOT_VERSION: "1.0.0"
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # This ensures all tags are fetched
+
+      - name: set up sbot path
+        run: |
+          mkdir bin
+          echo "$(pwd)/bin" >> $GITHUB_PATH
+
+      - name: install semverbot
+        run: |
+          curl -o bin/sbot -L https://github.com/restechnica/semverbot/releases/download/v$SEMVERBOT_VERSION/sbot-linux-amd64
+          chmod +x bin/sbot
+
+      - name: update version
+        run: |
+          sbot update version
+          current_version="$(sbot get version)"
+          release_version="$(sbot predict version -m patch)"
+          
+          echo "CURRENT_VERSION=v${current_version}" >> $GITHUB_ENV
+          echo "RELEASE_VERSION=v${release_version}" >> $GITHUB_ENV
+          
+          echo "current version: v${current_version}"
+          echo "next version: v${release_version}"
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: ./
+          root_file: main.tex
+          latexmk_use_xelatex: true
+
+      - name: Generate Changelog
+        run: |
+          # Check if previous version tag exists
+          if git rev-parse ${{ env.CURRENT_VERSION }} >/dev/null 2>&1; then
+            # If it exists, generate changelog from previous version
+            git log ${{ env.CURRENT_VERSION }}..${{ env.RELEASE_VERSION }} --pretty=%s --first-parent > ${{ github.workspace }}-CHANGELOG.txt
+          else
+            # If it doesn't exist, get all commits
+            git log --pretty=%s --first-parent > ${{ github.workspace }}-CHANGELOG.txt
+          fi
+        continue-on-error: true
+
+      - name: Configure Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Delete existing tag if present
+        run: |
+          git tag -d ${{ env.RELEASE_VERSION }} || true
+          git push origin :refs/tags/${{ env.RELEASE_VERSION }} || true
+        continue-on-error: true
+
+      - name: Create and push new tag
+        run: |
+          git tag ${{ env.RELEASE_VERSION }}
+          git push origin ${{ env.RELEASE_VERSION }}
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ env.RELEASE_VERSION }}
+          name: Release ${{ env.RELEASE_VERSION }}
+          bodyFile: ${{ github.workspace }}-CHANGELOG.txt
+          artifacts: "out/main.pdf"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          allowUpdates: true
+          replacesArtifacts: true
+
+      - name: Notify Beta Readers
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://n8n.viz.li/webhook/4cbf803f-42df-4bd1-9eac-898a5435907d'
+          method: 'POST'
+          customHeaders: '{"Content-Type": "application/json"}'
+          data: '{"releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}", "version" : "${{ env.RELEASE_VERSION }}", "bookURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/main.pdf" }'
+```
+
+# .gitignore
+
+```
+.idea
+.helpers
+auxil
+out/*
+!out/main.pdf
+**/*.DS_Store
+node_modules
+```
+
+# .semverbot.toml
+
+```toml
+mode = "auto"
+
+[git]
+
+[git.config]
+email = "ask@deletosh.com"
+name = "semverbot"
+
+[git.tags]
+prefix = "v"
+suffix = ""
+
+[semver]
+patch = ["fix", "bug"]
+minor = ["feature"]
+major = ["release"]
+
+[modes]
+
+[modes.git-branch]
+delimiters = "/"
+
+[modes.git-commit]
+delimiters = "[]/"
+
+```
+
+# appendix/africa-growth-circle.tex
+
+```tex
+% appendix/africa-growth-circle.tex
+
+\chapter{Africa Growth Circle Community Guide}
+
+\begin{importantbox}
+    This guide helps you maximize the value of your Africa Growth Circle membership at circle.counseal.com.
+\end{importantbox}
+
+
+\section{Platform Features}
+\begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Key Resources}]
+    \begin{itemize}
+        \item Expert Network Access
+        \item Document Template Library
+        \item Regional Discussion Forums
+        \item Market Intelligence Reports
+        \item Networking Events Calendar
+    \end{itemize}
+\end{tcolorbox}
+
+
+\section{Community Engagement}
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        % Community engagement cycle
+        \foreach \angle/\label in {
+            0/Connect,
+            72/Learn,
+            144/Share,
+            216/Grow,
+            288/Lead
+        } {
+            \node[draw,circle] at (\angle:3) {\label};
+            \draw[->] (\angle:3) arc (\angle:\angle+62:3);
+        }
+    \end{tikzpicture}
+    \caption{Community Engagement Cycle}
+\end{figure}
+
+
+\section{Resource Access Guide}
+\begin{tcolorbox}[colback=white,colframe=primary,title=\textbf{Digital Resources}]
+    \begin{enumerate}
+        \item Document Templates
+        \item Market Research
+        \item Expert Directory
+        \item Event Calendar
+        \item Discussion Forums
+        \item Knowledge Base
+    \end{enumerate}
+\end{tcolorbox}
+
+
+\section{Community Benefits}
+\begin{center}
+    \begin{tabular}{p{0.3\textwidth}|p{0.6\textwidth}}
+        \textbf{Benefit}    & \textbf{Description}                  \\
+        \hline
+        Expert Access       & Direct connection to industry experts \\
+        Resource Library    & Comprehensive template collection     \\
+        Market Intelligence & Regular market updates and analysis   \\
+        Networking          & Regular virtual and physical events   \\
+        Support             & Dedicated community support team      \\
+    \end{tabular}
+\end{center}
+
+\begin{importantbox}
+    Visit circle.counseal.com to activate your membership and access these resources.
+\end{importantbox}
+```
+
+# appendix/checklists.tex
+
+```tex
+% appendix/checklists.tex
+
+\chapter{Regulatory Compliance Checklists}
+
+\begin{importantbox}
+    These checklists provide structured guidance for meeting regulatory requirements. Updated versions are maintained on the Africa Growth Circle platform.
+\end{importantbox}
+
+
+\section{Business Registration}
+\begin{center}
+    \begin{tabular}{p{0.4\textwidth}|p{0.2\textwidth}|p{0.3\textwidth}}
+        \textbf{Requirement}       & \textbf{Timeline} & \textbf{Authority} \\
+        \hline
+        Business Name Registration & 1-2 weeks         & CAC                \\
+        Tax Registration           & 1 week            & FIRS               \\
+        Industry License           & 2-4 weeks         & Varies             \\
+    \end{tabular}
+\end{center}
+```
+
+# appendix/directory.tex
+
+```tex
+% appendix/directory.tex
+
+\chapter{Service Provider Directory}
+
+\begin{importantbox}
+    This directory provides a curated list of verified service providers. The complete, regularly updated directory is available on the Africa Growth Circle platform.
+\end{importantbox}
+
+
+\section{Legal Services}
+\begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Legal Service Categories}]
+    \begin{itemize}
+        \item Corporate Law
+        \item Regulatory Compliance
+        \item Intellectual Property
+        \item Employment Law
+        \item Contract Law
+    \end{itemize}
+\end{tcolorbox}
+```
+
+# appendix/resources.tex
+
+```tex
+% appendix/resources.tex
+
+\chapter{Regional Resource Guide}
+
+\begin{importantbox}
+    This guide provides key resources and contacts by region. Additional resources and regular updates are available on the Africa Growth Circle platform.
+\end{importantbox}
+
+
+\section{Government Agencies}
+\begin{center}
+    \begin{tabular}{p{0.3\textwidth}|p{0.3\textwidth}|p{0.3\textwidth}}
+        \textbf{Agency} & \textbf{Role}         & \textbf{Contact}  \\
+        \hline
+        CAC             & Business Registration & [Contact Details] \\
+        FIRS            & Tax Administration    & [Contact Details] \\
+        CBN             & Banking Regulation    & [Contact Details] \\
+    \end{tabular}
+\end{center}
+```
+
+# appendix/templates.tex
+
+```tex
+% appendix/templates.tex
+
+\chapter{Document Templates by Region}
+
+\begin{importantbox}
+This appendix provides essential document templates for business setup and operations. Additional templates and updates are available on the Africa Growth Circle platform.
+\end{importantbox}
+
+\section{United Kingdom Templates}
+\begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Financial Services Documentation}]
+\begin{itemize}
+    \item Regulatory compliance checklist
+    \item FCA application framework
+    \item Risk assessment template
+    \item Due diligence questionnaire
+    \item Partnership agreement template
+\end{itemize}
+\end{tcolorbox}
+
+\section{United States Templates}
+\begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Tech Business Documentation}]
+\begin{itemize}
+    \item IP protection filing template
+    \item Tech partnership agreement
+    \item Service level agreement
+    \item Data protection policy
+    \item User agreement template
+\end{itemize}
+\end{tcolorbox}
+```
+
+# breadcrumbs/creds
+
+```
+
+```
+
+# chapters/00-introduction.tex
 
 ```tex
 % chapters/00-introduction.tex
 
 \chapter*{Your Journey to Nigerian Market Entry}
 
-\section{Why Nigeria, Why Now}
-Nigeria stands at the crossroads of unprecedented opportunity...
+\section{Why Nigeria, Why Now: A Personal Journey}
+
+I still remember that day in 2015 when I found myself in the midst of facilitating a complex business deal in Nigeria. As someone who had built my career in Boston's vibrant software scene, working with multinational startups, I was struck by something that would change the trajectory of my professional life: the sheer complexity of getting legal proceedings moving forward in what should have been a straightforward transaction.
+
+This wasn't just another technical challenge to solve. As a Lagos-born professional who had built a career in global tech, I found myself in a unique position to see both sides of a striking paradox. On one side was Nigeria's immense, untapped potential – opportunities I could see clearly from my cultural understanding and business experience. On the other side were talented global entrepreneurs and diaspora, hesitating at the threshold of these opportunities, held back not by lack of capability but by uncertainty and misconceptions.
+
+The immediate solution seemed clear: simplify the legal operations. This led me to create Firmbird, a software platform that helped law firms streamline their operations. The software was successful – firms using it were closing deals worth millions of naira. But as I watched these transactions unfold, I realized we were solving only part of the problem.
+
+The real challenge wasn't just operational complexity; it was perception. Nigeria had a PR problem. While local firms were using our software to close significant deals, countless potential investors were staying away, not because of actual barriers, but because of oversized risk perceptions and negative narratives.
+
+This realization was personal for me. Having worked with startups in Boston, I understood how global entrepreneurs thought about market entry. Having been born in Lagos, I knew intimately the opportunities they were missing. The disconnect wasn't in the opportunities themselves – it was in the pathway to accessing them.
+
+That's what led to the evolution of Counseal. We combined my experience with startups, expertise in deals and operations, and deep understanding of both Nigerian and global business contexts to create something more than just another business platform. We built a bridge – a way for global entrepreneurs to access Nigerian opportunities with clarity and confidence.
 
 \section{How to Use This Book}
 
@@ -14,11 +368,13 @@ Nigeria stands at the crossroads of unprecedented opportunity...
 This book is designed to be both a comprehensive guide and a practical workbook. Each chapter builds upon the previous one while remaining independently valuable for your specific needs.
 \end{importantbox}
 
-\subsection{Navigation Guide}
+Think of this book as your navigation system through what I call the "Business World Forest" of Nigeria. Just as no two entrepreneurs enter this forest the same way, this book adapts to your specific journey.
+
+Each chapter is built on three core principles:
 \begin{itemize}
-    \item \textbf{Regional Insights:} Look for regional boxes highlighting specific considerations for your market
-    \item \textbf{Workshops:} Each chapter ends with practical exercises
-    \item \textbf{Community Integration:} Links to additional resources in the Africa Growth Circle
+    \item \textbf{Practical Reality:} Every framework, tool, and strategy has been battle-tested by real entrepreneurs in real Nigerian market entries
+    \item \textbf{Regional Context:} Your path will vary depending on where you're coming from – UK, US, UAE, or Canada
+    \item \textbf{Active Learning:} This is a workbook as much as it is a guide. Expect to roll up your sleeves
 \end{itemize}
 
 \section{Quick Assessment: Is Nigerian Market Entry Right for You?}
@@ -26,87 +382,155 @@ This book is designed to be both a comprehensive guide and a practical workbook.
 \begin{workshopbox}
 \textbf{Market Entry Readiness Assessment}
 
-Rate your readiness in each area (1-5):
+Rate yourself on each dimension from 1 (Not at all) to 5 (Completely):
+
+\subsection*{1. Knowledge Readiness}
 \begin{itemize}
-    \item Market Knowledge: \_\_\_
-    \item Financial Readiness: \_\_\_
-    \item Time Commitment: \_\_\_
-    \item Risk Tolerance: \_\_\_
-    \item Local Network: \_\_\_
+    \item [ ] I understand Nigeria's current economic landscape
+    \item [ ] I have clear insight into my target market segment
+    \item [ ] I'm familiar with the regulatory environment
+    \item [ ] I know my competitive advantage in this market
+    \item [ ] I understand local business culture
 \end{itemize}
 
-Total your score and refer to the interpretation guide on page XX.
+\subsection*{2. Resource Readiness}
+\begin{itemize}
+    \item [ ] I have access to required startup capital
+    \item [ ] I have a dedicated team or hiring plan
+    \item [ ] I have identified potential local partners
+    \item [ ] I have a clear budget for market entry
+    \item [ ] I have emergency funds for contingencies
+\end{itemize}
+
+\subsection*{3. Personal Readiness}
+\begin{itemize}
+    \item [ ] I'm comfortable with market ambiguity
+    \item [ ] I have support from key stakeholders
+    \item [ ] I can commit focused time to this market
+    \item [ ] I'm patient with bureaucratic processes
+    \item [ ] I'm open to adapting my business model
+\end{itemize}
+
+Calculate your score:
+\begin{itemize}
+    \item Knowledge Readiness Total: \_\_/25
+    \item Resource Readiness Total: \_\_/25
+    \item Personal Readiness Total: \_\_/25
+\end{itemize}
+
+\textbf{OVERALL READINESS SCORE:} \_\_/75
+
+\textbf{Interpretation:}
+\begin{itemize}
+    \item 60-75: Ready for immediate entry
+    \item 45-59: Ready with preparation
+    \item 30-44: Need significant preparation
+    \item Below 30: Reconsider timing
+\end{itemize}
 \end{workshopbox}
 
 \section{Reading Pathways Based on Your Region}
 
-\begin{regionalbox}{United Kingdom Focus}
-Priority chapters for UK-based financial services professionals:
+\begin{regionalbox}{United Kingdom}
+\textbf{Priority chapters for UK-based professionals:}
 \begin{itemize}
-    \item Chapter 2: Entry Strategy (Financial Services Framework)
-    \item Chapter 5: Financial Planning (UK Investment Structures)
-    \item Chapter 7: Local Network (Financial Services Networks)
+    \item Chapter 2: Financial Services Compliance Pathway
+    \item Chapter 5: UK Investment Structures
+    \item Chapter 6: UK-Nigeria Banking Protocols
+    \item Chapter 7: Commonwealth Business Networks
 \end{itemize}
+
+\textbf{Key starting point:} Begin with the Financial Services Compliance Pathway in Chapter 2
 \end{regionalbox}
 
-\begin{regionalbox}{United States Focus}
-Priority chapters for US-based tech entrepreneurs:
+\begin{regionalbox}{United States}
+\textbf{Priority chapters for US-based entrepreneurs:}
 \begin{itemize}
-    \item Chapter 2: Entry Strategy (Tech Startup Framework)
-    \item Chapter 8: Technology Operations
-    \item Chapter 9: Growth and Scaling
+    \item Chapter 2: Tech Startup Launch Framework
+    \item Chapter 5: US-Nigeria Investment Structures
+    \item Chapter 6: IP Protection Strategies
+    \item Chapter 8: Tech Infrastructure Setup
 \end{itemize}
+
+\textbf{Key starting point:} Focus on the Tech Startup Launch Framework in Chapter 2
 \end{regionalbox}
 
-\begin{regionalbox}{UAE Focus}
-Priority chapters for UAE-based trade specialists:
+\begin{regionalbox}{UAE}
+\textbf{Priority chapters for UAE-based professionals:}
 \begin{itemize}
-    \item Chapter 2: Entry Strategy (Trade License Framework)
-    \item Chapter 6: Risk Management (Trade Compliance)
-    \item Chapter 7: Local Network (Trade Associations)
+    \item Chapter 2: Trade License \& Import Framework
+    \item Chapter 5: Trade Finance Structures
+    \item Chapter 7: Trade Network Development
+    \item Chapter 8: Logistics Infrastructure
 \end{itemize}
+
+\textbf{Key starting point:} Start with the Trade License Framework in Chapter 2
 \end{regionalbox}
 
-\begin{regionalbox}{Canadian Focus}
-Priority chapters for Canadian-based professionals:
+\begin{regionalbox}{Canada}
+\textbf{Priority chapters for Canadian entrepreneurs:}
 \begin{itemize}
-    \item Chapter 2: Entry Strategy (Sector-Specific Requirements)
-    \item Chapter 5: Financial Planning (Sector-Specific Grants)
-    \item Chapter 8: Technology Operations (Industry Solutions)
+    \item Chapter 2: Sector-Specific Entry Requirements
+    \item Chapter 5: Canadian Grant Integration
+    \item Chapter 6: Environmental Compliance
+    \item Chapter 8: AgriTech Infrastructure
 \end{itemize}
+
+\textbf{Key starting point:} Begin with Sector-Specific Requirements in Chapter 2
 \end{regionalbox}
 
 \section{Accessing the Africa Growth Circle Community}
 
 \begin{communitybox}
-Your book purchase includes access to our exclusive community at circle.counseal.com
+Your book purchase includes access to our exclusive community at circle.counseal.com. Here you'll find:
 \begin{itemize}
-    \item Access extended case studies
-    \item Connect with fellow entrepreneurs
-    \item Join regional discussion groups
-    \item Access digital templates and tools
-    \item Participate in expert office hours
+    \item Live case studies and updates
+    \item Fellow entrepreneurs on similar journeys
+    \item Regional discussion groups
+    \item Document templates and tools
+    \item Monthly expert office hours
 \end{itemize}
+
+Think of the book as your map and the community as your traveling companions. You'll need both for this journey.
 \end{communitybox}
 
-\begin{warningbox}
-While this book provides comprehensive guidance, always consult with qualified professionals for legal, tax, and regulatory matters specific to your situation.
-\end{warningbox}
+\section{A Final Word}
+
+As we begin this journey together, I want to share something I've learned from my years straddling both global tech and Nigerian business environments: Nigeria isn't just another market to enter – it's a business ecosystem to understand, appreciate, and become part of. Every challenge you'll read about in the coming chapters is also an opportunity. Every cultural difference is a chance to innovate. Every regulatory hurdle is a barrier to entry for your less-prepared competitors.
+
+In my transition from building software in Boston to facilitating market entry in Lagos, I've learned that success here doesn't always follow the patterns you might be familiar with. But that's exactly why the opportunities are so extraordinary. As we say in Nigeria, "The same sun that melts wax hardens clay." Your success will depend not just on what you do, but on how well you adapt your approach to local realities.
+
+Ready to begin? Turn to Chapter 1, but keep this introduction handy – you'll want to revisit that assessment as your journey progresses.
+
+Remember, I started Counseal because I believe in the power of clear pathways. This book is your pathway. Let's make it count.
+
+\begin{flushright}
+\textit{-- Dele Omotosho\\
+Founder, Counseal.com\\
+Lagos, Nigeria}
+\end{flushright}
 
 % End of chapter workshop
 \begin{workshopbox}
-\textbf{Chapter 0 Action Items}
+\textbf{Introduction Action Items}
 \begin{itemize}
     \item Complete the Market Entry Readiness Assessment
     \item Identify your regional priority chapters
     \item Set up your Africa Growth Circle account
-    \item Connect with your regional discussion group
-    \item Download the digital resources for Chapter 1
+    \item \begin{itemize}
+              \item Go to circle.counseal.com
+              \item Connect with your regional discussion group
+               \item Download the digital resources for this book
+    \end{itemize}
 \end{itemize}
 \end{workshopbox}
+
+\begin{warningbox}
+While this book provides comprehensive guidance, always consult with qualified professionals for legal, tax, and regulatory matters specific to your situation.
+\end{warningbox}
 ```
 
-# 01-nigerian-business-landscape.tex
+# chapters/01-nigerian-business-landscape.tex
 
 ```tex
 % chapters/01-nigerian-business-landscape.tex
@@ -286,7 +710,7 @@ In Chapter 2, we'll build on this foundation to develop your entry strategy, inc
 \end{importantbox}
 ```
 
-# 02-entry-strategy.tex
+# chapters/02-entry-strategy.tex
 
 ```tex
 % chapters/02-entry-strategy.tex
@@ -492,7 +916,7 @@ In Chapter 3, we'll examine real-world success stories and learn from the experi
 \end{importantbox}
 ```
 
-# 03-success-stories.tex
+# chapters/03-success-stories.tex
 
 ```tex
 % chapters/03-success-stories.tex
@@ -671,7 +1095,7 @@ In Chapter 4, we'll translate these success patterns into a practical 90-day act
 \end{importantbox}
 ```
 
-# 04-first-90-days.tex
+# chapters/04-first-90-days.tex
 
 ```tex
 % chapters/04-first-90-days.tex
@@ -858,7 +1282,7 @@ In Chapter 5, we'll explore the financial planning and investment requirements n
 \end{importantbox}
 ```
 
-# 05-financial-planning.tex
+# chapters/05-financial-planning.tex
 
 ```tex
 % chapters/05-financial-planning.tex
@@ -1074,7 +1498,7 @@ In Chapter 6, we'll explore risk management and compliance frameworks to protect
 \end{importantbox}
 ```
 
-# 06-risk-management.tex
+# chapters/06-risk-management.tex
 
 ```tex
 % chapters/06-risk-management.tex
@@ -1328,7 +1752,7 @@ In Chapter 7, we'll explore building your local network and establishing key par
 \end{importantbox}
 ```
 
-# 07-local-network.tex
+# chapters/07-local-network.tex
 
 ```tex
 % chapters/07-local-network.tex
@@ -1582,7 +2006,7 @@ In Chapter 8, we'll explore the technology and operations setup needed to suppor
 \end{importantbox}
 ```
 
-# 08-technology-operations.tex
+# chapters/08-technology-operations.tex
 
 ```tex
 % chapters/08-technology-operations.tex
@@ -1848,7 +2272,7 @@ In Chapter 9, we'll explore strategies for growth and scaling your operations on
 \end{importantbox}
 ```
 
-# 09-growth-scaling.tex
+# chapters/09-growth-scaling.tex
 
 ```tex
 % chapters/09-growth-scaling.tex
@@ -2118,7 +2542,7 @@ In Chapter 10, we'll explore strategies for future-proofing your business and st
 \end{importantbox}
 ```
 
-# 10-future-proofing.tex
+# chapters/10-future-proofing.tex
 
 ```tex
 % chapters/10-future-proofing.tex
@@ -2370,185 +2794,265 @@ Congratulations on completing this comprehensive guide! Remember to stay connect
 \end{importantbox}
 ```
 
-# africa-growth-circle.tex
+# figures/dele-omotosho-biopic.png
+
+This is a binary file of the type: Image
+
+# main.tex
 
 ```tex
-% appendix/africa-growth-circle.tex
+\documentclass[11pt,letterpaper,openany]{book}
 
-\chapter{Africa Growth Circle Community Guide}
+% Essential packages in correct loading order
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{fancyhdr}
+\usepackage{etoc}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{afterpage}
+\usepackage{wrapfig}
+\usepackage{tcolorbox}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[nameinlink]{cleveref}
+\usepackage{bookmark}
+\usepackage{pgf-pie}  % For pie charts
+\usepackage{placeins} % For float placement
 
-\begin{importantbox}
-    This guide helps you maximize the value of your Africa Growth Circle membership at circle.counseal.com.
-\end{importantbox}
+% Fix float placement
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
 
+% Define pie chart colors
+\definecolor{piecolor1}{RGB}{51,153,255}
+\definecolor{piecolor2}{RGB}{0,102,0}
+\definecolor{piecolor3}{RGB}{153,0,0}
+\definecolor{piecolor4}{RGB}{255,153,0}
 
-\section{Platform Features}
-\begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Key Resources}]
-    \begin{itemize}
-        \item Expert Network Access
-        \item Document Template Library
-        \item Regional Discussion Forums
-        \item Market Intelligence Reports
-        \item Networking Events Calendar
-    \end{itemize}
-\end{tcolorbox}
+% For better figure placement
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.7}
 
+% Fix itemize spacing
+\usepackage{enumitem}
+\setlist[itemize]{topsep=0pt,itemsep=0pt,parsep=0pt,partopsep=0pt}
 
-\section{Community Engagement}
-\begin{figure}[h]
-    \centering
-    \begin{tikzpicture}
-        % Community engagement cycle
-        \foreach \angle/\label in {
-            0/Connect,
-            72/Learn,
-            144/Share,
-            216/Grow,
-            288/Lead
-        } {
-            \node[draw,circle] at (\angle:3) {\label};
-            \draw[->] (\angle:3) arc (\angle:\angle+62:3);
-        }
-    \end{tikzpicture}
-    \caption{Community Engagement Cycle}
-\end{figure}
+% Additional TikZ libraries
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{calc}
 
+% For better table formatting
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
 
-\section{Resource Access Guide}
-\begin{tcolorbox}[colback=white,colframe=primary,title=\textbf{Digital Resources}]
-    \begin{enumerate}
-        \item Document Templates
-        \item Market Research
-        \item Expert Directory
-        \item Event Calendar
-        \item Discussion Forums
-        \item Knowledge Base
-    \end{enumerate}
-\end{tcolorbox}
+% Fix page breaks
+\raggedbottom
 
+% Fix chapter spacing
+\titlespacing*{\chapter}{0pt}{-50pt}{40pt}
 
-\section{Community Benefits}
-\begin{center}
-    \begin{tabular}{p{0.3\textwidth}|p{0.6\textwidth}}
-        \textbf{Benefit}    & \textbf{Description}                  \\
-        \hline
-        Expert Access       & Direct connection to industry experts \\
-        Resource Library    & Comprehensive template collection     \\
-        Market Intelligence & Regular market updates and analysis   \\
-        Networking          & Regular virtual and physical events   \\
-        Support             & Dedicated community support team      \\
-    \end{tabular}
-\end{center}
+% TikZ libraries
+\usetikzlibrary{arrows,shapes,positioning,shadows,trees}
 
-\begin{importantbox}
-    Visit circle.counseal.com to activate your membership and access these resources.
-\end{importantbox}
+% Color definitions
+\definecolor{primarydark}{RGB}{0,71,187}     % Deep Blue
+\definecolor{primary}{RGB}{51,153,255}       % Bright Blue
+\definecolor{primarylight}{RGB}{204,229,255} % Light Blue
+\definecolor{secondarydark}{RGB}{0,102,0}    % Deep Green
+\definecolor{secondary}{RGB}{51,204,51}      % Bright Green
+\definecolor{secondarylight}{RGB}{229,255,229} % Light Green
+\definecolor{accentdark}{RGB}{153,0,0}       % Deep Red
+\definecolor{accent}{RGB}{255,51,51}         % Bright Red
+\definecolor{accentlight}{RGB}{255,204,204}  % Light Red
+
+% Chapter and section styling
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries\color{primarydark}}
+{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+\titleformat{\section}
+{\normalfont\Large\bfseries\color{primary}}
+{\thesection}{1em}{}
+
+\titleformat{\subsection}
+{\normalfont\large\bfseries\color{primarydark}}
+{\thesubsection}{1em}{}
+
+% Table of contents styling
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftchapfont}{\color{primarydark}\bfseries}
+\renewcommand{\cftsecfont}{\color{primary}}
+\renewcommand{\cftsubsecfont}{\color{primarydark}}
+
+% Header and footer styling
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyfoot[C]{\textcolor{primary}{\rule{0.5\textwidth}{0.4pt}}}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primarydark,
+    filecolor=accent,
+    urlcolor=secondary,
+    pdftitle={The Nigerian Business Opportunity Blueprint},
+    pdfauthor={Dele Omotosho, Counseal},
+    pdfsubject={Nigerian Market Entry Guide},
+    pdfkeywords={Nigeria, Business, Market Entry, Diaspora, Investment},
+}
+
+% Custom box styles
+\newtcolorbox{warningbox}{
+    colback=accentlight,
+    colframe=accentdark,
+    title=Warning,
+    fonttitle=\bfseries
+}
+
+\newtcolorbox{importantbox}{
+    colback=secondarylight,
+    colframe=secondarydark,
+    title=Important,
+    fonttitle=\bfseries
+}
+
+\newtcolorbox{regionalbox}{
+    colback=primarylight,
+    colframe=primarydark,
+    title=Regional Insight,
+    fonttitle=\bfseries
+}
+
+\newtcolorbox{workshopbox}{
+    colback=white,
+    colframe=primary,
+    title=Chapter Workshop,
+    fonttitle=\bfseries
+}
+
+\newtcolorbox{communitybox}{
+    colback=secondarylight,
+    colframe=secondary,
+    title=Africa Growth Circle Community,
+    fonttitle=\bfseries
+}
+
+% Listing style
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    commentstyle=\color{accentdark},
+    keywordstyle=\color{primarydark},
+    stringstyle=\color{secondary},
+    numbers=left,
+    numberstyle=\tiny\color{primary},
+    numbersep=5pt,
+    frame=single,
+    framesep=5pt,
+    rulecolor=\color{primary},
+}
+
+% Caption style
+\DeclareCaptionFont{primarydarkcolor}{\color{primarydark}}
+\captionsetup{
+    font=small,
+    labelfont={primarydarkcolor,bf},
+    margin=10pt
+}
+
+% Set headheight
+\setlength{\headheight}{14pt}
+
+% Define current date command
+\newcommand{\currentdate}{\today}
+
+\begin{document}
+
+    \frontmatter
+
+    \begin{titlepage}
+        \centering
+        \vspace*{2cm}
+        {\Huge\bfseries\color{primarydark} The Nigerian Business\\Opportunity Blueprint\par}
+        \vspace{1cm}
+        {\Large\color{primary} Your Global Guide to Nigerian Market Entry\par}
+        \vspace{2cm}
+        {\Large\itshape Dele Omotosho, Counseal.com\par}
+        \vspace{1cm}
+        {\large Empowering Nigerian Dreams Through Global Access\par}
+        \vfill
+        {\large Join the Africa Growth Circle Community at circle.counseal.com\par}
+        \vspace{1cm}
+        {\large \currentdate\par}
+    \end{titlepage}
+
+    \tableofcontents
+
+    \mainmatter
+
+    \include{chapters/00-introduction}
+%    \include{chapters/01-nigerian-business-landscape}
+%    \include{chapters/02-entry-strategy}
+%    \include{chapters/03-success-stories}
+%    \include{chapters/04-first-90-days}
+%    \include{chapters/05-financial-planning}
+%    \include{chapters/06-risk-management}
+%    \include{chapters/07-local-network}
+%    \include{chapters/08-technology-operations}
+%    \include{chapters/09-growth-scaling}
+%    \include{chapters/10-future-proofing}
+
+    \backmatter
+
+%    \include{appendix/templates}
+%    \include{appendix/checklists}
+%    \include{appendix/directory}
+%    \include{appendix/resources}
+%    \include{appendix/africa-growth-circle}
+
+\end{document}
 ```
 
-# checklists.tex
+# out/main.pdf
 
-```tex
-% appendix/checklists.tex
+This is a binary file of the type: PDF
 
-\chapter{Regulatory Compliance Checklists}
+# package.json
 
-\begin{importantbox}
-    These checklists provide structured guidance for meeting regulatory requirements. Updated versions are maintained on the Africa Growth Circle platform.
-\end{importantbox}
+```json
+{
+  "dependencies": {
+    "ai-digest": "^1.0.7"
+  },
+  "scripts": {
+    "digest": "npx ai-digest -o book.md"
+  }
+}
 
-
-\section{Business Registration}
-\begin{center}
-    \begin{tabular}{p{0.4\textwidth}|p{0.2\textwidth}|p{0.3\textwidth}}
-        \textbf{Requirement}       & \textbf{Timeline} & \textbf{Authority} \\
-        \hline
-        Business Name Registration & 1-2 weeks         & CAC                \\
-        Tax Registration           & 1 week            & FIRS               \\
-        Industry License           & 2-4 weeks         & Varies             \\
-    \end{tabular}
-\end{center}
 ```
 
-# directory.tex
+# readme.md
 
-```tex
-% appendix/directory.tex
-
-\chapter{Service Provider Directory}
-
-\begin{importantbox}
-    This directory provides a curated list of verified service providers. The complete, regularly updated directory is available on the Africa Growth Circle platform.
-\end{importantbox}
-
-
-\section{Legal Services}
-\begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Legal Service Categories}]
-    \begin{itemize}
-        \item Corporate Law
-        \item Regulatory Compliance
-        \item Intellectual Property
-        \item Employment Law
-        \item Contract Law
-    \end{itemize}
-\end{tcolorbox}
+```md
+### The Nigerian Business Opportunity Blueprint: Your Global Guide to Nigerian Market Entry
 ```
 
-# resources.tex
-
-```tex
-% appendix/resources.tex
-
-\chapter{Regional Resource Guide}
-
-\begin{importantbox}
-    This guide provides key resources and contacts by region. Additional resources and regular updates are available on the Africa Growth Circle platform.
-\end{importantbox}
-
-
-\section{Government Agencies}
-\begin{center}
-    \begin{tabular}{p{0.3\textwidth}|p{0.3\textwidth}|p{0.3\textwidth}}
-        \textbf{Agency} & \textbf{Role}         & \textbf{Contact}  \\
-        \hline
-        CAC             & Business Registration & [Contact Details] \\
-        FIRS            & Tax Administration    & [Contact Details] \\
-        CBN             & Banking Regulation    & [Contact Details] \\
-    \end{tabular}
-\end{center}
-```
-
-# templates.tex
-
-```tex
-% appendix/templates.tex
-
-\chapter{Document Templates by Region}
-
-\begin{importantbox}
-This appendix provides essential document templates for business setup and operations. Additional templates and updates are available on the Africa Growth Circle platform.
-\end{importantbox}
-
-\section{United Kingdom Templates}
-\begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Financial Services Documentation}]
-\begin{itemize}
-    \item Regulatory compliance checklist
-    \item FCA application framework
-    \item Risk assessment template
-    \item Due diligence questionnaire
-    \item Partnership agreement template
-\end{itemize}
-\end{tcolorbox}
-
-\section{United States Templates}
-\begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Tech Business Documentation}]
-\begin{itemize}
-    \item IP protection filing template
-    \item Tech partnership agreement
-    \item Service level agreement
-    \item Data protection policy
-    \item User agreement template
-\end{itemize}
-\end{tcolorbox}
-```
-
-### The Nigerian Business Opportunity Blueprint: Your Global Guide to Nigerian Market Entry - Outline

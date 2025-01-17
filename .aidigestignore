@@ -2,6 +2,6 @@
 .helpers
 auxil
 out/*
-!out/nigerian_biz_ops_blueprint_ebook.pdf
+!out/main.pdf
 **/*.DS_Store
 node_modules
