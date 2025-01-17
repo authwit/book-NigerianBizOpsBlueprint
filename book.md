@@ -13,7 +13,7 @@ node_modules
 # .github/workflows/compileandrelease.yml
 
 ```yml
-name: Compile Latex and Release PDF
+name: Compile Documents and Release
 
 permissions:
   contents: write
@@ -27,25 +27,30 @@ env:
   SEMVERBOT_VERSION: "1.0.0"
 
 jobs:
-  build_latex:
+  build_documents:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0  # This ensures all tags are fetched
+          fetch-depth: 0
 
-      - name: set up sbot path
+      - name: Set up sbot path
         run: |
           mkdir bin
           echo "$(pwd)/bin" >> $GITHUB_PATH
 
-      - name: install semverbot
+      - name: Install pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-latex-extra
+
+      - name: Install semverbot
         run: |
           curl -o bin/sbot -L https://github.com/restechnica/semverbot/releases/download/v$SEMVERBOT_VERSION/sbot-linux-amd64
           chmod +x bin/sbot
 
-      - name: update version
+      - name: Update version
         run: |
           sbot update version
           current_version="$(sbot get version)"
@@ -62,16 +67,30 @@ jobs:
         with:
           working_directory: ./
           root_file: main.tex
+          args: '-jobname=nigerian_biz_ops_blueprint_ebook'
           latexmk_use_xelatex: true
+
+      - name: Convert to EPUB
+        run: |
+          # Create a temporary markdown file from LaTeX
+          pandoc -f latex -t markdown main.tex -o temp.md
+          
+          # Convert markdown to EPUB with metadata
+          pandoc temp.md -o nigerian_biz_ops_blueprint_ebook.epub \
+            --metadata title="The Nigerian Business Opportunity Blueprint" \
+            --metadata author="Dele Omotosho" \
+            --metadata date="$(date +%Y)" \
+            --metadata language="en-US" \
+            --metadata publisher="Counseal" \
+            --toc --toc-depth=3 \
+            --epub-cover-image=figures/book-cover.png \
+            --css=epub.css
 
       - name: Generate Changelog
         run: |
-          # Check if previous version tag exists
           if git rev-parse ${{ env.CURRENT_VERSION }} >/dev/null 2>&1; then
-            # If it exists, generate changelog from previous version
             git log ${{ env.CURRENT_VERSION }}..${{ env.RELEASE_VERSION }} --pretty=%s --first-parent > ${{ github.workspace }}-CHANGELOG.txt
           else
-            # If it doesn't exist, get all commits
             git log --pretty=%s --first-parent > ${{ github.workspace }}-CHANGELOG.txt
           fi
         continue-on-error: true
@@ -98,7 +117,7 @@ jobs:
           tag: ${{ env.RELEASE_VERSION }}
           name: Release ${{ env.RELEASE_VERSION }}
           bodyFile: ${{ github.workspace }}-CHANGELOG.txt
-          artifacts: "out/main.pdf"
+          artifacts: "nigerian_biz_ops_blueprint_ebook.pdf,nigerian_biz_ops_blueprint_ebook.epub"
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           replacesArtifacts: true
@@ -109,7 +128,13 @@ jobs:
           url: 'https://n8n.viz.li/webhook/4cbf803f-42df-4bd1-9eac-898a5435907d'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
-          data: '{"releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}", "version" : "${{ env.RELEASE_VERSION }}", "bookURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/main.pdf" }'
+          data: |
+            {
+              "releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}",
+              "version": "${{ env.RELEASE_VERSION }}",
+              "pdfURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.pdf",
+              "epubURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.epub"
+            }
 ```
 
 # .gitignore
@@ -119,9 +144,9 @@ jobs:
 .helpers
 auxil
 out/*
-!out/main.pdf
 **/*.DS_Store
 node_modules
+*.epub
 ```
 
 # .semverbot.toml
@@ -339,6 +364,32 @@ This appendix provides essential document templates for business setup and opera
 
 ```
 
+```
+
+# build-epub.sh
+
+```sh
+#!/bin/bash
+
+# Create a temporary markdown file from LaTeX
+pandoc -f latex -t markdown main.tex -o temp.md
+
+# Convert markdown to EPUB with metadata
+pandoc temp.md -o nigerian_biz_ops_blueprint_ebook.epub \
+  --metadata title="The Nigerian Business Opportunity Blueprint" \
+  --metadata author="Dele Omotosho" \
+  --metadata date="$(date +%Y)" \
+  --metadata language="en-US" \
+  --metadata publisher="Counseal" \
+  --toc --toc-depth=3 \
+  --epub-cover-image=figures/book-cover.png \
+  --css=epub.css
+
+# Clean up
+rm temp.md
+
+# Open in Calibre for testing (optional)
+open -a calibre nigerian_biz_ops_blueprint_ebook.epub
 ```
 
 # chapters/00-introduction.tex
@@ -2794,6 +2845,81 @@ Congratulations on completing this comprehensive guide! Remember to stay connect
 \end{importantbox}
 ```
 
+# epub.css
+
+```css
+/* epub.css */
+body {
+    margin: 5%;
+    text-align: justify;
+    font-size: 1em;
+    line-height: 1.5;
+    font-family: serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: sans-serif;
+    color: #003366;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.3em;
+}
+
+blockquote {
+    margin: 1.5em 2em;
+    padding: 0.5em 1em;
+    border-left: 4px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+code {
+    font-family: monospace;
+    background-color: #f4f4f4;
+    padding: 2px 4px;
+}
+
+pre {
+    background-color: #f4f4f4;
+    padding: 1em;
+    overflow-x: auto;
+}
+
+.title {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+
+.author {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+}
+
+.date {
+    text-align: center;
+    font-size: 1em;
+    margin-bottom: 3em;
+}
+```
+
+# figures/book-cover.png
+
+This is a binary file of the type: Image
+
 # figures/dele-omotosho-biopic.png
 
 This is a binary file of the type: Image
@@ -3032,9 +3158,9 @@ This is a binary file of the type: Image
 \end{document}
 ```
 
-# out/main.pdf
+# nigerian_biz_ops_blueprint_ebook.epub
 
-This is a binary file of the type: PDF
+This is a binary file of the type: Binary
 
 # package.json
 
@@ -3044,7 +3170,8 @@ This is a binary file of the type: PDF
     "ai-digest": "^1.0.7"
   },
   "scripts": {
-    "digest": "npx ai-digest -o book.md"
+    "digest": "npx ai-digest -o book.md",
+    "build": "pdflatex -file-line-error -interaction=nonstopmode -synctex=1 -output-format=pdf -jobname=nigerian_biz_ops_blueprint_ebook -output-directory=/Users/deletosh/@projects/book-NigerianBizOpsBlueprint/out -aux-directory=/Users/deletosh/@projects/book-NigerianBizOpsBlueprint/auxil main.tex"
   }
 }
 
