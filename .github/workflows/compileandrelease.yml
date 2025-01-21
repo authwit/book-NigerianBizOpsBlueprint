@@ -43,7 +43,6 @@ jobs:
           
           echo "CURRENT_VERSION=v${current_version}" >> $GITHUB_ENV
           echo "RELEASE_VERSION=v${release_version}" >> $GITHUB_ENV
-          echo "VERSION_NUMBER=${release_version}" >> $GITHUB_ENV
           
           echo "current version: v${current_version}"
           echo "next version: v${release_version}"
@@ -53,7 +52,7 @@ jobs:
         with:
           working_directory: ./
           root_file: main.tex
-          args: '-jobname=nigerian_biz_ops_blueprint_ebook_v${{ env.VERSION_NUMBER }}'
+          args: '-jobname=nigerian_biz_ops_blueprint_ebook'
           latexmk_use_xelatex: true
 
       - name: Convert to EPUB
@@ -62,7 +61,7 @@ jobs:
           pandoc -f latex -t markdown main.tex -o temp.md
           
           # Convert markdown to EPUB with metadata
-          pandoc temp.md -o nigerian_biz_ops_blueprint_ebook_v${{ env.VERSION_NUMBER }}.epub \
+          pandoc temp.md -o nigerian_biz_ops_blueprint_ebook.epub \
             --metadata title="The Nigerian Business Opportunity Blueprint" \
             --metadata author="Dele Omotosho" \
             --metadata date="$(date +%Y)" \
@@ -88,7 +87,7 @@ jobs:
 
       - name: Delete existing tag if present
         run: |
-          git tag -d ${{ env.RELEASE_VERSION }} || true
+          git tag -d ${{ env.RELEASE_VERSION }} || trueºº
           git push origin :refs/tags/${{ env.RELEASE_VERSION }} || true
         continue-on-error: true
 
@@ -103,7 +102,7 @@ jobs:
           tag: ${{ env.RELEASE_VERSION }}
           name: Release ${{ env.RELEASE_VERSION }}
           bodyFile: ${{ github.workspace }}-CHANGELOG.txt
-          artifacts: "nigerian_biz_ops_blueprint_ebook_v${{ env.VERSION_NUMBER }}.pdf,nigerian_biz_ops_blueprint_ebook_v${{ env.VERSION_NUMBER }}.epub"
+          artifacts: "nigerian_biz_ops_blueprint_ebook.pdf,nigerian_biz_ops_blueprint_ebook.epub"
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           replacesArtifacts: true
@@ -118,6 +117,6 @@ jobs:
             {
               "releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}",
               "version": "${{ env.RELEASE_VERSION }}",
-              "pdfURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook_v${{ env.VERSION_NUMBER }}.pdf",
-              "epubURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook_v${{ env.VERSION_NUMBER }}.epub"
+              "pdfURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.pdf",
+              "epubURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.epub"
             }
