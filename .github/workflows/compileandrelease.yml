@@ -107,16 +107,16 @@ jobs:
           allowUpdates: true
           replacesArtifacts: true
 
-      - name: Notify Beta Readers
-        uses: fjogeleit/http-request-action@v1
-        with:
-          url: 'https://n8n.viz.li/webhook/4cbf803f-42fd-4bd1-9eac-898a5435907d'
-          method: 'POST'
-          customHeaders: '{"Content-Type": "application/json"}'
-          data: |
-            {
-              "releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}",
-              "version": "${{ env.RELEASE_VERSION }}",
-              "pdfURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook_${{ env.RELEASE_VERSION }}.pdf",
-              "epubURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook_${{ env.RELEASE_VERSION }}.epub"
-            }
+#      - name: Notify Beta Readers
+#        uses: fjogeleit/http-request-action@v1
+#        with:
+#          url: 'https://n8n.viz.li/webhook/4cbf803f-42fd-4bd1-9eac-898a5435907d'
+#          method: 'POST'
+#          customHeaders: '{"Content-Type": "application/json"}'
+#          data: |
+#            {
+#              "releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}",
+#              "version": "${{ env.RELEASE_VERSION }}",
+#              "pdfURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook_${{ env.RELEASE_VERSION }}.pdf",
+#              "epubURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook_${{ env.RELEASE_VERSION }}.epub"
+#            }
