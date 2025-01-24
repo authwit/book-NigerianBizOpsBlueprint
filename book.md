@@ -1356,25 +1356,26 @@ Similarly, your market entry needs a structured approach.\ The fintech founder f
 
 I pulled out a blank piece of paper and drew what I now call the ``Market Entry Mountain'' – a simple visualization showing how different activities build upon each other.\ Let me share that with you:
 
-\begin{figure}[htbp]
+ Market Entry Mountain
+\begin{figure}[H]
     \centering
     \begin{tikzpicture}[scale=0.8]
         % Draw the mountain shape
         \draw[thick] (0,0) -- (3,4) -- (6,0);
-        
+
         % Add milestone markers
         \foreach \x/\y/\label in {
-            0.5/0.7/Foundation,
-            2/2.7/Growth,
-            4/2.7/Implementation,
-            5.5/0.7/Optimization
+            0.5/0.7/{Foundation},
+            2/2.7/{Growth},
+            4/2.7/{Implementation},
+            5.5/0.7/{Optimization}
         } {
             \fill (\x,\y) circle (2pt);
             \node[rotate=45] at (\x,\y+0.3) {\small\label};
         }
-        
+
         % Add timeline
-        \draw[->] (0,-0.5) -- (6,-0.5);
+        \draw[-stealth] (0,-0.5) -- (6,-0.5);
         \node at (3,-1) {90 Days};
     \end{tikzpicture}
     \caption{The Market Entry Mountain}
@@ -1424,20 +1425,24 @@ Your first two weeks are critical for setting the right foundation.\ A US tech e
 
 Timeline Tip: Start your FCA registration process early, as it often needs to align with CBN requirements.
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[node distance=2cm]
-        % UK compliance framework
-        \node[draw, rectangle, fill=gray!10] (fca) at (0,0) {FCA Requirements};
-        \node[draw, rectangle, fill=gray!10] (cbn) at (4,0) {CBN Requirements};
-        \node[draw, rectangle, fill=gray!10] (compliance) at (2,-2) {Compliance Framework};
-        
-        \draw[->, thick] (fca) -- (compliance);
-        \draw[->, thick] (cbn) -- (compliance);
-    \end{tikzpicture}
-    \caption{UK-Nigeria Regulatory Alignment Framework}
-    \label{fig:uk-regulatory-framework}
-\end{figure}
+%\begin{figure}[ht]
+%    \centering
+%    \begin{tikzpicture}[
+%        node distance=2cm,
+%        box/.style={draw, rectangle, fill=gray!10, minimum width=2.5cm, minimum height=1cm}
+%    ]
+%        % UK compliance framework
+%        \node[box] (fca) at (0,0) {FCA Requirements};
+%        \node[box] (cbn) at (4,0) {CBN Requirements};
+%        \node[box] (compliance) at (2,-2) {Compliance Framework};
+%
+%        \draw[-stealth, thick] (fca) -- (compliance);
+%        \draw[-stealth, thick] (cbn) -- (compliance);
+%    \end{tikzpicture}
+%    \caption{UK-Nigeria Regulatory Alignment Framework}
+%    \label{fig:uk-regulatory-framework}
+%\end{figure}
+
 \end{regionalbox}
 \subsection{US Tech Setup Framework}\label{subsec:us-setup}
 \begin{regionalbox}{United States}
@@ -1452,23 +1457,23 @@ For US tech companies:
 
 Timeline Tip: Your IP protection should be in place before any local development begins.
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[node distance=2cm]
-        % US tech setup framework
-        \node[draw, rectangle, fill=gray!10] (legal) at (0,0) {Legal Structure};
-        \node[draw, rectangle, fill=gray!10] (ip) at (4,0) {IP Protection};
-        \node[draw, rectangle, fill=gray!10] (tech) at (0,-2) {Tech Infrastructure};
-        \node[draw, rectangle, fill=gray!10] (data) at (4,-2) {Data Protection};
-
-        \draw[->, thick] (legal) -- (tech);
-        \draw[->, thick] (ip) -- (tech);
-        \draw[->, thick] (ip) -- (data);
-        \draw[->, thick] (tech) -- (data);
-    \end{tikzpicture}
-    \caption{US Tech Company Setup Framework}
-    \label{fig:us-tech-framework}
-\end{figure}
+%\begin{figure}[htbp]
+%    \centering
+%    \begin{tikzpicture}[node distance=2cm]
+%        % US tech setup framework
+%        \node[draw, rectangle, fill=gray!10] (legal) at (0,0) {Legal Structure};
+%        \node[draw, rectangle, fill=gray!10] (ip) at (4,0) {IP Protection};
+%        \node[draw, rectangle, fill=gray!10] (tech) at (0,-2) {Tech Infrastructure};
+%        \node[draw, rectangle, fill=gray!10] (data) at (4,-2) {Data Protection};
+%
+%        \draw[->, thick] (legal) -- (tech);
+%        \draw[->, thick] (ip) -- (tech);
+%        \draw[->, thick] (ip) -- (data);
+%        \draw[->, thick] (tech) -- (data);
+%    \end{tikzpicture}
+%    \caption{US Tech Company Setup Framework}
+%    \label{fig:us-tech-framework}
+%\end{figure}
 \end{regionalbox}
 
 \subsection{UAE Trade Setup Structure}\label{subsec:uae-setup}
@@ -1484,25 +1489,25 @@ For UAE trading companies:
 
 Timeline Tip: Focus on customs documentation first, as this often impacts other processes.
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[node distance=2.5cm]
-        % UAE trade setup structure
-        \node[draw, circle, fill=gray!10] (trade) at (0,0) {Trade License};
-        \foreach \angle/\label in {
-            0/Customs,
-            72/Warehouse,
-            144/Logistics,
-            216/Suppliers,
-            288/Documentation
-        } {
-            \node[draw, circle, fill=gray!10] at (\angle:2.5) {\label};
-            \draw[->, thick] (trade) -- (\angle:2.5);
-        }
-    \end{tikzpicture}
-    \caption{UAE Trade Operation Structure}
-    \label{fig:uae-trade-structure}
-\end{figure}
+%\begin{figure}[htbp]
+%    \centering
+%    \begin{tikzpicture}[node distance=2.5cm]
+%        % UAE trade setup structure
+%        \node[draw, circle, fill=gray!10] (trade) at (0,0) {Trade License};
+%        \foreach \angle/\label in {
+%            0/Customs,
+%            72/Warehouse,
+%            144/Logistics,
+%            216/Suppliers,
+%            288/Documentation
+%        } {
+%            \node[draw, circle, fill=gray!10] at (\angle:2.5) {\label};
+%            \draw[->, thick] (trade) -- (\angle:2.5);
+%        }
+%    \end{tikzpicture}
+%    \caption{UAE Trade Operation Structure}
+%    \label{fig:uae-trade-structure}
+%\end{figure}
 \end{regionalbox}
 
 \subsection{Canadian Sector Framework}\label{subsec:canadian-setup}
@@ -1518,65 +1523,75 @@ For Canadian sector-specific businesses:
 
 Timeline Tip: Environmental compliance should be prioritized, especially in agriculture and manufacturing.
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[node distance=2cm]
-        % Canadian sector framework
-        \node[draw, rectangle, fill=gray!10] (reg) at (0,0) {Industry Registration};
-        \node[draw, rectangle, fill=gray!10] (env) at (4,0) {Environmental Compliance};
-        \node[draw, rectangle, fill=gray!10] (quality) at (0,-2) {Quality Certification};
-        \node[draw, rectangle, fill=gray!10] (sustain) at (4,-2) {Sustainability Framework};
-
-        \draw[->, thick] (reg) -- (quality);
-        \draw[->, thick] (env) -- (sustain);
-        \draw[->, thick] (reg) -- (env);
-        \draw[->, thick] (quality) -- (sustain);
-    \end{tikzpicture}
-    \caption{Canadian Sector Compliance Framework}
-    \label{fig:canadian-framework}
-\end{figure}
+%\begin{figure}[htbp]
+%    \centering
+%    \begin{tikzpicture}[node distance=2cm]
+%        % Canadian sector framework
+%        \node[draw, rectangle, fill=gray!10] (reg) at (0,0) {Industry Registration};
+%        \node[draw, rectangle, fill=gray!10] (env) at (4,0) {Environmental Compliance};
+%        \node[draw, rectangle, fill=gray!10] (quality) at (0,-2) {Quality Certification};
+%        \node[draw, rectangle, fill=gray!10] (sustain) at (4,-2) {Sustainability Framework};
+%
+%        \draw[->, thick] (reg) -- (quality);
+%        \draw[->, thick] (env) -- (sustain);
+%        \draw[->, thick] (reg) -- (env);
+%        \draw[->, thick] (quality) -- (sustain);
+%    \end{tikzpicture}
+%    \caption{Canadian Sector Compliance Framework}
+%    \label{fig:canadian-framework}
+%\end{figure}
 \end{regionalbox}
 
 \section{Infrastructure Development Phase}\label{sec:infrastructure-phase}
 
 These weeks are about building your operational foundation.\ The experience of a UAE trade specialist taught us a valuable lesson: ``In Dubai, we rush to build the tallest buildings.\ But in Nigeria, we must first ensure the foundation is solid.''
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[node distance=3cm]
-        % Infrastructure development cycle
-        \node[draw, circle, minimum size=2cm] (core) at (0,0) {Core\\Systems};
-        \foreach \angle/\label in {
-            0/Physical Setup,
-            72/Technology,
-            144/Human Capital,
-            216/Processes,
-            288/Support Systems
-        } {
-            \draw[->, thick] (core) -- (\angle:3)
-                node[circle, draw, minimum size=1.8cm, text width=2cm, align=center] at (\angle:3) {\label};
-        }
-    \end{tikzpicture}
-    \caption{Infrastructure Development Framework}
-    \label{fig:infrastructure-framework}
-\end{figure}
+% Infrastructure Development Framework
+%\begin{figure}[H]
+%    \centering
+%    \begin{tikzpicture}[
+%        node distance=3cm,
+%        every node/.style={draw, circle, minimum size=2cm}
+%    ]
+%        \node (core) at (0,0) {Core\\Systems};
+%        \foreach \angle/\label in {
+%            0/{Physical Setup},
+%            72/{Technology},
+%            144/{Human Capital},
+%            216/{Processes},
+%            288/{Support Systems}
+%        } {
+%            \draw[-stealth, thick] (core) -- (\angle:3)
+%                node at (\angle:3) {\label};
+%        }
+%    \end{tikzpicture}
+%    \caption{Infrastructure Development Framework}
+%    \label{fig:infrastructure-framework}
+%\end{figure}
 
 \section{Operational Setup Phase}\label{sec:operational-setup}
 
 This phase is where theory meets practice.\ The financial services sector has taught us valuable lessons about what I call the ``Operation Triple-Lock'' – the critical alignment of people, processes, and technology.
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[node distance=3cm]
-        % Triple Lock diagram with enhanced styling
-        \foreach \angle/\label in {0/People,120/Processes,240/Technology} {
-            \node[draw, circle, minimum size=2cm, fill=gray!10] (n\angle) at (\angle:2.5) {\label};
-            \draw[->, thick] (n\angle) arc (\angle:\angle+110:2.5);
-        }
-    \end{tikzpicture}
-    \caption{Operation Triple-Lock Framework}
-    \label{fig:triple-lock-framework}
-\end{figure}
+% Operation Triple-Lock Framework
+%\begin{figure}[H]
+%    \centering
+%    \begin{tikzpicture}[
+%        node distance=3cm,
+%        every node/.style={draw, circle, minimum size=2cm, fill=gray!10}
+%    ]
+%        \foreach \angle/\label in {
+%            0/{People},
+%            120/{Processes},
+%            240/{Technology}
+%        } {
+%            \node (n\angle) at (\angle:2.5) {\label};
+%            \draw[-stealth, thick] (n\angle) arc (\angle:\angle+110:2.5);
+%        }
+%    \end{tikzpicture}
+%    \caption{Operation Triple-Lock Framework}
+%    \label{fig:triple-lock-framework}
+%\end{figure}
 
 \begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Operational Setup Matrix}]
 \begin{center}
@@ -1597,18 +1612,18 @@ This phase is where theory meets practice.\ The financial services sector has ta
 
 This phase introduces what I call the ``Controlled Contact'' approach.\ A successful e-commerce implementation demonstrated the power of focusing on a carefully selected initial customer base rather than attempting to capture the entire market at once.
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[node distance=2.5cm]
-        % Market engagement spiral
-        \foreach \r/\label in {1/Core Market,2/Early Adopters,3/Main Market,4/Market Expansion} {
-            \draw[thick] (0,0) arc (0:270:\r);
-            \node[text width=2cm] at (-\r-0.5,-\r) {\label};
-        }
-    \end{tikzpicture}
-    \caption{Market Engagement Spiral}
-    \label{fig:market-spiral}
-\end{figure}
+%\begin{figure}[htbp]
+%    \centering
+%    \begin{tikzpicture}[node distance=2.5cm]
+%        % Market engagement spiral
+%        \foreach \r/\label in {1/Core Market,2/Early Adopters,3/Main Market,4/Market Expansion} {
+%            \draw[thick] (0,0) arc (0:270:\r);
+%            \node[text width=2cm] at (-\r-0.5,-\r) {\label};
+%        }
+%    \end{tikzpicture}
+%    \caption{Market Engagement Spiral}
+%    \label{fig:market-spiral}
+%\end{figure}
 
 \begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Market Engagement Strategy}]
 \textbf{Phase 1: Core Market Development}
@@ -1632,23 +1647,23 @@ This phase introduces what I call the ``Controlled Contact'' approach.\ A succes
 
 During this phase, we implement what I call ``Responsive Refinement'' – making data-driven adjustments based on real market feedback.
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[node distance=3cm]
-        % Performance optimization cycle
-        \foreach \angle/\label in {
-            0/Monitor Results,
-            90/Analyze Data,
-            180/Plan Changes,
-            270/Implement Updates
-        } {
-            \node[draw, circle, minimum size=2cm, fill=gray!10] (p\angle) at (\angle:3) {\label};
-            \draw[->, thick] (p\angle) arc (\angle:\angle+80:3);
-        }
-    \end{tikzpicture}
-    \caption{Performance Optimization Cycle}
-    \label{fig:optimization-cycle}
-\end{figure}
+%\begin{figure}[htbp]
+%    \centering
+%    \begin{tikzpicture}[node distance=3cm]
+%        % Performance optimization cycle
+%        \foreach \angle/\label in {
+%            0/Monitor Results,
+%            90/Analyze Data,
+%            180/Plan Changes,
+%            270/Implement Updates
+%        } {
+%            \node[draw, circle, minimum size=2cm, fill=gray!10] (p\angle) at (\angle:3) {\label};
+%            \draw[->, thick] (p\angle) arc (\angle:\angle+80:3);
+%        }
+%    \end{tikzpicture}
+%    \caption{Performance Optimization Cycle}
+%    \label{fig:optimization-cycle}
+%\end{figure}
 
 \begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Key Performance Indicators}]
 \begin{center}
@@ -1671,19 +1686,19 @@ During this phase, we implement what I call ``Responsive Refinement'' – making
 
 The final phase of your first 90 days focuses on what I call the ``Sustainable Scaling Framework.'' The agricultural technology sector has shown us the importance of systematic growth preparation.
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[node distance=2.5cm]
-        % Growth readiness pyramid
-        \draw[fill=gray!10] (0,0) -- (4,0) -- (2,3) -- cycle;
-        \node at (2,2.5) {Scalability};
-        \node at (1,1.5) {Systems};
-        \node at (3,1.5) {Resources};
-        \node at (2,0.5) {Foundation};
-    \end{tikzpicture}
-    \caption{Growth Readiness Pyramid}
-    \label{fig:growth-pyramid}
-\end{figure}
+%\begin{figure}[htbp]
+%    \centering
+%    \begin{tikzpicture}[node distance=2.5cm]
+%        % Growth readiness pyramid
+%        \draw[fill=gray!10] (0,0) -- (4,0) -- (2,3) -- cycle;
+%        \node at (2,2.5) {Scalability};
+%        \node at (1,1.5) {Systems};
+%        \node at (3,1.5) {Resources};
+%        \node at (2,0.5) {Foundation};
+%    \end{tikzpicture}
+%    \caption{Growth Readiness Pyramid}
+%    \label{fig:growth-pyramid}
+%\end{figure}
 
 \subsection{Documentation Framework}\label{subsec:documentation-framework}
 \begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Critical Documentation Areas}]
@@ -1730,25 +1745,25 @@ The evolution of financial services in Nigeria presents unique opportunities acr
 \end{itemize}
 \end{tcolorbox}
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[node distance=2.5cm]
-        % Financial services ecosystem
-        \node[draw, circle, minimum size=2cm, fill=gray!10] (core) at (0,0) {Core\\Banking};
-        \foreach \angle/\label in {
-            0/Digital\\Payments,
-            72/Wealth\\Management,
-            144/Insurance\\Tech,
-            216/Lending\\Platforms,
-            288/Investment\\Services
-        } {
-            \node[draw, circle, minimum size=2cm, fill=gray!10] at (\angle:3) {\label};
-            \draw[->, thick] (core) -- (\angle:3);
-        }
-    \end{tikzpicture}
-    \caption{UK Financial Services Ecosystem}
-    \label{fig:uk-financial-ecosystem}
-\end{figure}
+%\begin{figure}[htbp]
+%    \centering
+%    \begin{tikzpicture}[node distance=2.5cm]
+%        % Financial services ecosystem
+%        \node[draw, circle, minimum size=2cm, fill=gray!10] (core) at (0,0) {Core\\Banking};
+%        \foreach \angle/\label in {
+%            0/Digital\\Payments,
+%            72/Wealth\\Management,
+%            144/Insurance\\Tech,
+%            216/Lending\\Platforms,
+%            288/Investment\\Services
+%        } {
+%            \node[draw, circle, minimum size=2cm, fill=gray!10] at (\angle:3) {\label};
+%            \draw[->, thick] (core) -- (\angle:3);
+%        }
+%    \end{tikzpicture}
+%    \caption{UK Financial Services Ecosystem}
+%    \label{fig:uk-financial-ecosystem}
+%\end{figure}
 
 \subsection{US Technology Sector Expansion}\label{subsec:us-technology}
 
@@ -1782,31 +1797,31 @@ The Nigerian technology landscape offers diverse opportunities across multiple d
 \end{itemize}
 \end{tcolorbox}
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[node distance=3cm]
-        % Technology sector framework
-        \node[draw, rectangle, fill=gray!10] (core) at (0,0) {Tech\\Infrastructure};
-        \node[draw, rectangle, fill=gray!10] (ecom) at (-3,-2) {E-commerce};
-        \node[draw, rectangle, fill=gray!10] (enterprise) at (0,-2) {Enterprise};
-        \node[draw, rectangle, fill=gray!10] (edu) at (3,-2) {EdTech};
-
-        \draw[->, thick] (core) -- (ecom);
-        \draw[->, thick] (core) -- (enterprise);
-        \draw[->, thick] (core) -- (edu);
-
-        \foreach \src in {ecom,enterprise,edu} {
-            \foreach \dest in {ecom,enterprise,edu} {
-                \ifnum\pdfstrcmp{\src}{\dest}=0
-                \else
-                    \draw[->, thick, dashed] (\src) -- (\dest);
-                \fi
-            }
-        }
-    \end{tikzpicture}
-    \caption{US Technology Sector Integration}
-    \label{fig:us-tech-integration}
-\end{figure}
+%\begin{figure}[htbp]
+%    \centering
+%    \begin{tikzpicture}[node distance=3cm]
+%        % Technology sector framework
+%        \node[draw, rectangle, fill=gray!10] (core) at (0,0) {Tech\\Infrastructure};
+%        \node[draw, rectangle, fill=gray!10] (ecom) at (-3,-2) {E-commerce};
+%        \node[draw, rectangle, fill=gray!10] (enterprise) at (0,-2) {Enterprise};
+%        \node[draw, rectangle, fill=gray!10] (edu) at (3,-2) {EdTech};
+%
+%        \draw[->, thick] (core) -- (ecom);
+%        \draw[->, thick] (core) -- (enterprise);
+%        \draw[->, thick] (core) -- (edu);
+%
+%        \foreach \src in {ecom,enterprise,edu} {
+%            \foreach \dest in {ecom,enterprise,edu} {
+%                \ifnum\pdfstrcmp{\src}{\dest}=0
+%                \else
+%                    \draw[->, thick, dashed] (\src) -- (\dest);
+%                \fi
+%            }
+%        }
+%    \end{tikzpicture}
+%    \caption{US Technology Sector Integration}
+%    \label{fig:us-tech-integration}
+%\end{figure}
 
 \subsection{UAE Industrial and Trade Development}\label{subsec:uae-trade}
 
@@ -1840,26 +1855,26 @@ The industrial and trade sector offers significant opportunities for growth and 
 \end{itemize}
 \end{tcolorbox}
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[node distance=2.5cm]
-        % Industrial and trade network
-        \node[draw, rectangle, fill=gray!10] (hub) at (0,0) {Trade Hub};
-        \node[draw, rectangle, fill=gray!10] (mfg) at (-3,-2) {Manufacturing};
-        \node[draw, rectangle, fill=gray!10] (log) at (0,-2) {Logistics};
-        \node[draw, rectangle, fill=gray!10] (trade) at (3,-2) {Trade Services};
-
-        \draw[->, thick] (hub) -- (mfg);
-        \draw[->, thick] (hub) -- (log);
-        \draw[->, thick] (hub) -- (trade);
-
-        \draw[->, thick, dashed] (mfg) -- (log);
-        \draw[->, thick, dashed] (log) -- (trade);
-        \draw[->, thick, dashed] (trade) -- (mfg);
-    \end{tikzpicture}
-    \caption{UAE Industrial and Trade Network}
-    \label{fig:uae-trade-network}
-\end{figure}
+%\begin{figure}[htbp]
+%    \centering
+%    \begin{tikzpicture}[node distance=2.5cm]
+%        % Industrial and trade network
+%        \node[draw, rectangle, fill=gray!10] (hub) at (0,0) {Trade Hub};
+%        \node[draw, rectangle, fill=gray!10] (mfg) at (-3,-2) {Manufacturing};
+%        \node[draw, rectangle, fill=gray!10] (log) at (0,-2) {Logistics};
+%        \node[draw, rectangle, fill=gray!10] (trade) at (3,-2) {Trade Services};
+%
+%        \draw[->, thick] (hub) -- (mfg);
+%        \draw[->, thick] (hub) -- (log);
+%        \draw[->, thick] (hub) -- (trade);
+%
+%        \draw[->, thick, dashed] (mfg) -- (log);
+%        \draw[->, thick, dashed] (log) -- (trade);
+%        \draw[->, thick, dashed] (trade) -- (mfg);
+%    \end{tikzpicture}
+%    \caption{UAE Industrial and Trade Network}
+%    \label{fig:uae-trade-network}
+%\end{figure}
 
 \subsection{Canadian Resource and Agricultural Innovation}\label{subsec:canadian-resource}
 
@@ -1893,52 +1908,52 @@ The resource and agricultural sectors present unique opportunities for technolog
 \end{itemize}
 \end{tcolorbox}
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[node distance=3cm]
-        % Resource and agriculture framework
-        \node[draw, circle, fill=gray!10] (core) at (0,0) {Resource\\Management};
-        \foreach \angle/\label in {
-            0/AgriTech,
-            120/CleanTech,
-            240/Conservation
-        } {
-            \node[draw, circle, fill=gray!10] at (\angle:3) {\label};
-            \draw[->, thick] (core) -- (\angle:3);
-            \foreach \dest in {0,120,240} {
-                \ifnum\pdfstrcmp{\angle}{\dest}=0
-                \else
-                    \draw[->, thick, dashed] (\angle:3) arc (\angle:\dest:3);
-                \fi
-            }
-        }
-    \end{tikzpicture}
-    \caption{Canadian Resource and Agriculture Integration}
-    \label{fig:canadian-resource-framework}
-\end{figure}
+%\begin{figure}[htbp]
+%    \centering
+%    \begin{tikzpicture}[node distance=3cm]
+%        % Resource and agriculture framework
+%        \node[draw, circle, fill=gray!10] (core) at (0,0) {Resource\\Management};
+%        \foreach \angle/\label in {
+%            0/AgriTech,
+%            120/CleanTech,
+%            240/Conservation
+%        } {
+%            \node[draw, circle, fill=gray!10] at (\angle:3) {\label};
+%            \draw[->, thick] (core) -- (\angle:3);
+%            \foreach \dest in {0,120,240} {
+%                \ifnum\pdfstrcmp{\angle}{\dest}=0
+%                \else
+%                    \draw[->, thick, dashed] (\angle:3) arc (\angle:\dest:3);
+%                \fi
+%            }
+%        }
+%    \end{tikzpicture}
+%    \caption{Canadian Resource and Agriculture Integration}
+%    \label{fig:canadian-resource-framework}
+%\end{figure}
 
 \section{Success Metrics Framework}\label{sec:success-metrics}
 
-\begin{figure}[htbp]
-    \centering
-    \begin{tikzpicture}[node distance=2.5cm]
-        % Success metrics hexagon
-        \foreach \angle/\label in {
-            0/Financial,
-            60/Operational,
-            120/Customer,
-            180/Process,
-            240/People,
-            300/Growth
-        } {
-            \node[draw, regular polygon, regular polygon sides=6, minimum size=1cm, fill=gray!10]
-                at (\angle:3) {\label};
-            \draw[->, thick] (0,0) -- (\angle:2.5);
-        }
-    \end{tikzpicture}
-    \caption{Comprehensive Success Metrics Framework}
-    \label{fig:success-metrics}
-\end{figure}
+%\begin{figure}[htbp]
+%    \centering
+%    \begin{tikzpicture}[node distance=2.5cm]
+%        % Success metrics hexagon
+%        \foreach \angle/\label in {
+%            0/Financial,
+%            60/Operational,
+%            120/Customer,
+%            180/Process,
+%            240/People,
+%            300/Growth
+%        } {
+%            \node[draw, regular polygon, regular polygon sides=6, minimum size=1cm, fill=gray!10]
+%                at (\angle:3) {\label};
+%            \draw[->, thick] (0,0) -- (\angle:2.5);
+%        }
+%    \end{tikzpicture}
+%    \caption{Comprehensive Success Metrics Framework}
+%    \label{fig:success-metrics}
+%\end{figure}
 
 \begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Success Factors Matrix}]
 \begin{center}
@@ -3780,6 +3795,45 @@ This is a binary file of the type: Image
     pdfkeywords={Nigeria, Business, Market Entry, Diaspora, Investment},
 }
 
+% Add after the existing packages but before \begin{document}
+
+% For Unicode character support
+\usepackage{textcomp}
+\usepackage{newunicodechar}
+
+
+\setmainfont{Linux Libertine O}
+
+% Define the Unicode characters
+\DeclareTextCommand{\d}{T1}[1]{\c{#1}}
+\DeclareTextCommand{\textsubdot}{T1}[1]{\d{#1}}
+
+\newunicodechar{ọ}{\textsubdot{o}}
+\newunicodechar{ẹ}{\textsubdot{e}}
+\newunicodechar{Ọ}{\textsubdot{O}}
+\newunicodechar{́}{\'{}}
+\newunicodechar{̀}{\`{}}
+
+
+% Better figure placement
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.85}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{3}
+\setcounter{totalnumber}{4}
+
+% TikZ specific settings
+\usetikzlibrary{calc,shapes,arrows,shadows,positioning}
+\tikzset{
+  every node/.style={
+    inner sep=2pt,
+    text depth=0pt,
+    minimum size=20pt
+  }
+}
+
 % Custom box styles
 \newtcolorbox{warningbox}{
     colback=accentlight,
@@ -3863,6 +3917,7 @@ This is a binary file of the type: Image
         \begin{itemize}
             \item You're getting early access to the content as it's being developed
             \item Additional chapters will be added regularly
+            \item You'll receive notifications as new chapters are released
             \item You'll receive notifications as new chapters are released
             \item Your feedback is incredibly valuable in shaping the final content
         \end{itemize}

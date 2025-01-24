@@ -123,12 +123,26 @@
 \usepackage{textcomp}
 \usepackage{newunicodechar}
 
-% Define problematic Unicode characters
-\DeclareUnicodeCharacter{1ECD}{o}  % ọ
-\DeclareUnicodeCharacter{1EB9}{e}  % ẹ
-\DeclareUnicodeCharacter{1ECC}{O}  % Ọ
-\DeclareUnicodeCharacter{0301}{\'}  % ́ (combining acute)
-\DeclareUnicodeCharacter{0300}{\`}  % ̀ (combining grave)
+
+% Define the Unicode characters
+\DeclareTextCommand{\d}{T1}[1]{\c{#1}}
+\DeclareTextCommand{\textsubdot}{T1}[1]{\d{#1}}
+
+\newunicodechar{ọ}{\textsubdot{o}}
+\newunicodechar{ẹ}{\textsubdot{e}}
+\newunicodechar{Ọ}{\textsubdot{O}}
+\newunicodechar{́}{\'{}}
+\newunicodechar{̀}{\`{}}
+
+% Unicode character definitions
+\DeclareTextCommand{\d}{T1}[1]{\c{#1}}
+\DeclareTextCommand{\textsubdot}{T1}[1]{\d{#1}}
+
+\newunicodechar{ọ}{\textsubdot{o}}
+\newunicodechar{ẹ}{\textsubdot{e}}
+\newunicodechar{Ọ}{\textsubdot{O}}
+\newunicodechar{́}{\'{}}
+\newunicodechar{̀}{\`{}}
 
 % Better figure placement
 \renewcommand{\topfraction}{0.85}
@@ -232,6 +246,7 @@
         \begin{itemize}
             \item You're getting early access to the content as it's being developed
             \item Additional chapters will be added regularly
+            \item You'll receive notifications as new chapters are released
             \item You'll receive notifications as new chapters are released
             \item Your feedback is incredibly valuable in shaping the final content
         \end{itemize}
