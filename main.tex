@@ -117,6 +117,38 @@
     pdfkeywords={Nigeria, Business, Market Entry, Diaspora, Investment},
 }
 
+% Add after the existing packages but before \begin{document}
+
+% For Unicode character support
+\usepackage{textcomp}
+\usepackage{newunicodechar}
+
+% Define problematic Unicode characters
+\DeclareUnicodeCharacter{1ECD}{o}  % ọ
+\DeclareUnicodeCharacter{1EB9}{e}  % ẹ
+\DeclareUnicodeCharacter{1ECC}{O}  % Ọ
+\DeclareUnicodeCharacter{0301}{\'}  % ́ (combining acute)
+\DeclareUnicodeCharacter{0300}{\`}  % ̀ (combining grave)
+
+% Better figure placement
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.85}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{3}
+\setcounter{totalnumber}{4}
+
+% TikZ specific settings
+\usetikzlibrary{calc,shapes,arrows,shadows,positioning}
+\tikzset{
+  every node/.style={
+    inner sep=2pt,
+    text depth=0pt,
+    minimum size=20pt
+  }
+}
+
 % Custom box styles
 \newtcolorbox{warningbox}{
     colback=accentlight,

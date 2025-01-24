@@ -117,7 +117,7 @@ jobs:
           tag: ${{ env.RELEASE_VERSION }}
           name: Release ${{ env.RELEASE_VERSION }}
           bodyFile: ${{ github.workspace }}-CHANGELOG.txt
-          artifacts: "nigerian_biz_ops_blueprint_ebook_${{ env.RELEASE_VERSION }}.pdf,nigerian_biz_ops_blueprint_ebook_${{ env.RELEASE_VERSION }}.epub"
+          artifacts: "nigerian_biz_ops_blueprint_ebook.pdf,nigerian_biz_ops_blueprint_ebook.epub"
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           replacesArtifacts: true
@@ -132,8 +132,8 @@ jobs:
             {
               "releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}",
               "version": "${{ env.RELEASE_VERSION }}",
-              "pdfURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook_${{ env.RELEASE_VERSION }}.pdf",
-              "epubURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook_${{ env.RELEASE_VERSION }}.epub"
+              "pdfURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.pdf",
+              "epubURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.epub"
             }
 ```
 
@@ -2224,7 +2224,7 @@ I've seen too many entrepreneurs get caught in what I call the ``Big Money Trap'
 
 \section{Interactive Financial Planning Tools}\label{sec:financial-tools}
 
-To help you plan your finances more effectively, I've created an interactive financial planning calculator. This tool will help you:
+To help you plan your finances more effectively, we've created an interactive financial planning calculator.\ This tool will help you:
 
 \begin{itemize}
     \item Model different scenarios
