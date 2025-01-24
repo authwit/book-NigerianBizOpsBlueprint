@@ -122,19 +122,19 @@ jobs:
           allowUpdates: true
           replacesArtifacts: true
 
-      - name: Notify Beta Readers
-        uses: fjogeleit/http-request-action@v1
-        with:
-          url: 'https://n8n.viz.li/webhook/4cbf803f-42df-4bd1-9eac-898a5435907d'
-          method: 'POST'
-          customHeaders: '{"Content-Type": "application/json"}'
-          data: |
-            {
-              "releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}",
-              "version": "${{ env.RELEASE_VERSION }}",
-              "pdfURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.pdf",
-              "epubURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.epub"
-            }
+#      - name: Notify Beta Readers
+#        uses: fjogeleit/http-request-action@v1
+#        with:
+#          url: 'https://n8n.viz.li/webhook/4cbf803f-42df-4bd1-9eac-898a5435907d'
+#          method: 'POST'
+#          customHeaders: '{"Content-Type": "application/json"}'
+#          data: |
+#            {
+#              "releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}",
+#              "version": "${{ env.RELEASE_VERSION }}",
+#              "pdfURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.pdf",
+#              "epubURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.epub"
+#            }
 ```
 
 # .gitignore
@@ -2299,15 +2299,15 @@ Remember, successful market entry isn't about having the most money --- it's abo
 ```tex
 % chapters/06-risk-management.tex
 
-\chapter{Risk Management and Compliance}
+\chapter{Risk Management and Compliance}\label{ch:risk-management-and-compliance}
 
 \begin{importantbox}
 This chapter provides a comprehensive framework for identifying, assessing, and mitigating risks in the Nigerian market, along with detailed compliance requirements by sector and region.
 \end{importantbox}
 
-\section{Due Diligence Framework}
+\section{Due Diligence Framework}\label{sec:due-diligence-framework}
 
-\subsection{Core Due Diligence Components}
+\subsection{Core Due Diligence Components}\label{subsec:core-due-diligence-components}
 
 \begin{figure}[htbp]
     \centering
@@ -2348,13 +2348,13 @@ This chapter provides a comprehensive framework for identifying, assessing, and 
 \end{center}
 
 \FloatBarrier
-\section{Legal Safeguards}
+\section{Legal Safeguards}\label{sec:legal-safeguards}
 
 \begin{warningbox}
-Legal requirements can change frequently. Always verify current requirements through official channels or your legal counsel.
+Legal requirements can change frequently.\ Always verify current requirements through official channels or your legal counsel.
 \end{warningbox}
 
-\subsection{Essential Legal Documentation}
+\subsection{Essential Legal Documentation}\label{subsec:essential-legal-documentation}
 \begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Documentation Checklist}]
 \begin{itemize}
     \item Registration certificates
@@ -2367,15 +2367,53 @@ Legal requirements can change frequently. Always verify current requirements thr
 \end{tcolorbox}
 
 \FloatBarrier
-\section{Regional Compliance Requirements}
+\section{Regional Compliance Requirements}\label{sec:regional-compliance-requirements}
 
 \begin{regionalbox}{United Kingdom}
 \textbf{Financial Services Compliance Framework}
 \begin{itemize}
-    \item FCA compliance requirements
-    \item Anti-money laundering regulations
-    \item Data protection standards
-    \item Cross-border transaction rules
+    \item \textbf{Central Bank of Nigeria (CBN) Requirements}
+    \begin{itemize}
+        \item Minimum capital requirement: NGN 25 billion for commercial banking
+        \item Risk-based capital adequacy ratio: 15\%
+        \item Non-performing loans ratio: maximum 5\%
+        \item Liquidity ratio: minimum 30\%
+        \item Daily reporting requirements for specified transactions
+        \item Monthly returns submission
+        \item Annual external audit
+    \end{itemize}
+
+    \item \textbf{Financial Conduct Authority (FCA) Requirements}
+    \begin{itemize}
+        \item Authorization application process
+        \item Threshold Conditions compliance
+        \item Systems and controls framework
+        \item Senior Managers and Certification Regime
+        \item Conduct risk management
+        \item Client money protection
+        \item Regular reporting obligations
+    \end{itemize}
+
+    \item \textbf{Anti-Money Laundering Regulations}
+    \begin{itemize}
+        \item Customer Due Diligence (CDD)
+        \item Enhanced Due Diligence (EDD)
+        \item Transaction monitoring systems
+        \item Suspicious Activity Reporting (SAR)
+        \item Record keeping requirements
+        \item Staff training programs
+        \item Regular risk assessments
+    \end{itemize}
+
+    \item \textbf{Data Protection Standards}
+    \begin{itemize}
+        \item Nigeria Data Protection Regulation compliance
+        \item GDPR compliance for EU data
+        \item Privacy impact assessments
+        \item Data breach notification procedures
+        \item Data retention policies
+        \item Cross-border data transfer protocols
+    \end{itemize}
 \end{itemize}
 \end{regionalbox}
 
@@ -2405,19 +2443,44 @@ Legal requirements can change frequently. Always verify current requirements thr
 \begin{regionalbox}{United States}
 \textbf{Tech Regulation and Data Protection}
 \begin{itemize}
-    \item Data privacy requirements
-    \item IP protection framework
-    \item Consumer protection standards
-    \item Digital security compliance
+    \item \textbf{Data Privacy Requirements}
+    \begin{itemize}
+        \item NDPR compliance framework
+        \item Privacy policy implementation
+        \item Data collection consent
+        \item Access rights management
+        \item Breach notification protocols
+        \item Regular privacy audits
+    \end{itemize}
+
+    \item \textbf{IP Protection Framework}
+    \begin{itemize}
+        \item Patent registration process
+        \item Trademark protection
+        \item Copyright registration
+        \item Trade secret protocols
+        \item Licensing agreements
+        \item IP enforcement strategies
+    \end{itemize}
+
+    \item \textbf{Digital Security Compliance}
+    \begin{itemize}
+        \item Security assessment framework
+        \item Penetration testing requirements
+        \item Encryption standards
+        \item Access control protocols
+        \item Incident response planning
+        \item Regular security audits
+    \end{itemize}
 \end{itemize}
 
-\subsection{US Tech Compliance Matrix}
+\subsection{US Tech Compliance Matrix}\label{subsec:us-tech-compliance-matrix}
 \begin{center}
 \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}X >{\raggedright\arraybackslash}X}
     \toprule
     \textbf{Requirement} & \textbf{Standard} & \textbf{Implementation} \\
     \midrule
-    Data Privacy & GDPR-aligned & Privacy framework \\
+    Data Privacy & NDPR/GDPR-aligned & Privacy framework \\
     Security & ISO 27001 & Security protocols \\
     Consumer Protection & FTC standards & Protection measures \\
     \bottomrule
@@ -2428,13 +2491,35 @@ Legal requirements can change frequently. Always verify current requirements thr
 \begin{regionalbox}{UAE}
 \textbf{Trade Compliance Framework}
 \begin{itemize}
-    \item Trade license requirements
-    \item Import/export regulations
-    \item Customs documentation
-    \item Currency controls
+    \item \textbf{Trade License Requirements}
+    \begin{itemize}
+        \item General trading license
+        \item Specific product licenses
+        \item Agent registration
+        \item Annual renewals
+        \item Activity restrictions
+    \end{itemize}
+
+    \item \textbf{Import/Export Regulations}
+    \begin{itemize}
+        \item Documentation requirements
+        \item Customs procedures
+        \item Duty calculations
+        \item Restricted items
+        \item Special permissions
+    \end{itemize}
+
+    \item \textbf{Currency Controls}
+    \begin{itemize}
+        \item Transaction reporting
+        \item Exchange controls
+        \item Documentation requirements
+        \item Transfer limits
+        \item Compliance reporting
+    \end{itemize}
 \end{itemize}
 
-\subsection{UAE Trade Compliance Checklist}
+\subsection{UAE Trade Compliance Checklist}\label{subsec:uae-trade-compliance-checklist}
 \begin{tcolorbox}[colback=white,colframe=primary,title=\textbf{Required Documents}]
 \begin{itemize}
     \item Trade license
@@ -2455,7 +2540,7 @@ Legal requirements can change frequently. Always verify current requirements thr
     \item Export compliance
 \end{itemize}
 
-\subsection{Canadian Sector Compliance}
+\subsection{Canadian Sector Compliance}\label{subsec:canadian-sector-compliance}
 \begin{center}
 \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}X >{\raggedright\arraybackslash}X}
     \toprule
@@ -2470,9 +2555,9 @@ Legal requirements can change frequently. Always verify current requirements thr
 \end{regionalbox}
 
 \FloatBarrier
-\section{Banking and Money Transfer}
+\section{Banking and Money Transfer}\label{sec:banking-and-money-transfer}
 
-\subsection{Banking Structure}
+\subsection{Banking Structure}\label{subsec:banking-structure}
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}[
@@ -2491,15 +2576,70 @@ Legal requirements can change frequently. Always verify current requirements thr
     \label{fig:banking-structure}
 \end{figure}
 
-\FloatBarrier
-\section{Currency Risk Management}
+\subsection{Banking Operations Framework}\label{subsec:banking-operations-framework}
+\begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Banking Operations Components}]
+\begin{itemize}
+    \item \textbf{Account Setup}
+    \begin{itemize}
+        \item Corporate account requirements
+        \item Documentation process
+        \item Signatory arrangements
+        \item Online banking setup
+        \item Mobile banking activation
+    \end{itemize}
 
+    \item \textbf{Transaction Processing}
+    \begin{itemize}
+        \item Payment authorizations
+        \item Transaction limits
+        \item Processing timeframes
+        \item Fee structures
+        \item Reconciliation procedures
+    \end{itemize}
+
+    \item \textbf{Cross-Border Operations}
+    \begin{itemize}
+        \item International transfer protocols
+        \item Documentation requirements
+        \item Correspondent banking relationships
+        \item Compliance procedures
+        \item Reporting obligations
+    \end{itemize}
+\end{itemize}
+\end{tcolorbox}
+
+\FloatBarrier
+\section{Currency Risk Management}\label{sec:currency-risk-management}
+
+\subsection{Hedging Strategies Framework}\label{subsec:hedging-strategies-framework}
 \begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Currency Risk Mitigation Strategies}]
 \begin{itemize}
-    \item Forward contracts
-    \item Currency hedging
-    \item Local currency accounts
-    \item Payment timing strategies
+    \item \textbf{Forward Contracts}
+    \begin{itemize}
+        \item Contract specifications
+        \item Pricing mechanisms
+        \item Settlement procedures
+        \item Documentation requirements
+        \item Risk assessment
+    \end{itemize}
+
+    \item \textbf{Currency Hedging}
+    \begin{itemize}
+        \item Options strategies
+        \item Swap arrangements
+        \item Natural hedging
+        \item Cross-currency hedging
+        \item Cost considerations
+    \end{itemize}
+
+    \item \textbf{Local Currency Management}
+    \begin{itemize}
+        \item Account structuring
+        \item Conversion timing
+        \item Balance optimization
+        \item Interest management
+        \item Exposure limits
+    \end{itemize}
 \end{itemize}
 \end{tcolorbox}
 
@@ -3802,8 +3942,6 @@ This is a binary file of the type: Image
 \usepackage{newunicodechar}
 
 
-\setmainfont{Linux Libertine O}
-
 % Define the Unicode characters
 \DeclareTextCommand{\d}{T1}[1]{\c{#1}}
 \DeclareTextCommand{\textsubdot}{T1}[1]{\d{#1}}
@@ -3814,6 +3952,15 @@ This is a binary file of the type: Image
 \newunicodechar{́}{\'{}}
 \newunicodechar{̀}{\`{}}
 
+% Unicode character definitions
+\DeclareTextCommand{\d}{T1}[1]{\c{#1}}
+\DeclareTextCommand{\textsubdot}{T1}[1]{\d{#1}}
+
+\newunicodechar{ọ}{\textsubdot{o}}
+\newunicodechar{ẹ}{\textsubdot{e}}
+\newunicodechar{Ọ}{\textsubdot{O}}
+\newunicodechar{́}{\'{}}
+\newunicodechar{̀}{\`{}}
 
 % Better figure placement
 \renewcommand{\topfraction}{0.85}
@@ -3957,7 +4104,7 @@ This is a binary file of the type: Image
     \include{chapters/03-success-stories}
     \include{chapters/04-first-90-days}
     \include{chapters/05-financial-planning}
-%    \include{chapters/06-risk-management}
+    \include{chapters/06-risk-management}
 %    \include{chapters/07-local-network}
 %    \include{chapters/08-technology-operations}
 %    \include{chapters/09-growth-scaling}
