@@ -3040,7 +3040,7 @@ Here are the main entry models and their characteristics:\linebreak
 \end{itemize}
 \section{Legal Structure Selection}\label{sec:legal-structure-selection}
 
-One of the most common questions I get is, ``Dele, which legal structure is best?" My answer is always the same: "Tell me your story first.'' Your legal structure should be a natural extension of your entry strategy, not a constraint on it.
+One of the most common questions I get is, ``Dele, which legal structure is best?" My answer is always the same: ``Tell me your story first.'' Your legal structure should be a natural extension of your entry strategy, not a constraint on it.
 
 Common legal structures include:
 \begin{enumerate}
@@ -3102,7 +3102,7 @@ I often use what I call the ``Nigerian Wedding Analogy'' when explaining timelin
     \item Process refinement
 \end{itemize}
 \vspace{1em}
-\textbf{Phase 4: Optimization (Months 10-12)}
+\textbf{Phase 4: Optimization (Months 10--12)}
 \begin{itemize}
     \item Operations streamlining
     \item Team expansion
@@ -3185,7 +3185,7 @@ Focus areas for US-based entrepreneurs:
 
 UAE businesses often have what I call ``trading DNA''—a natural understanding of import/export dynamics and cross-cultural trade.
 
-Key considerations for UAE entrepreneurs:
+Key considerations for UAE-based entrepreneurs:
 
 \begin{enumerate}
     \item \textbf{Trade Documentation}
@@ -3221,7 +3221,7 @@ Key considerations for UAE entrepreneurs:
 
 Canadian entrepreneurs often bring what I call a ``systematic approach'' to market entry, which can be both a strength and a limitation.
 
-Focus areas for Canadian entrepreneurs:
+Focus areas for Canada-based entrepreneurs:
 
 \begin{enumerate}
     \item \textbf{Sector Compliance}
@@ -3380,7 +3380,7 @@ Let's start with Sarah's use-case.\ As she described her plans to enter the Nige
 \begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Sarah's Profile}]
 \begin{itemize}
     \item \textbf{Background:} 15 years in investment banking
-    \item \textbf{Previous Role:} Head of Trading, Major Bank
+    \item \textbf{Previous Role:} Head of Trading, Major Bank  
     \item \textbf{Market Entry:} Cross-border payments solution
     \item \textbf{Initial Capital:} £55,000
     \item \textbf{Time to Market:} 9 months
@@ -3421,7 +3421,6 @@ Sarah's approach to market penetration was methodical yet innovative.\ She devel
 \section{US Case Study: Mike's E-commerce Evolution}\label{sec:us-case-study:-mike's-e-commerce-evolution}
 
 Mike started with a ``bulletproof'' plan for Nigerian e-commerce.\ After a short review, that plan was in pieces – he realised something much better.
-
 \subsection{The Comprehensive Journey}\label{subsec:the-comprehensive-journey}
 \begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Mike's Challenge Areas}]
 \begin{enumerate}
@@ -3456,8 +3455,7 @@ Mike started with a ``bulletproof'' plan for Nigerian e-commerce.\ After a short
 \end{tcolorbox}
 
 \subsection{Technology Adaptation Deep Dive}\label{subsec:technology-adaptation-deep-dive}
-Mike's journey with technology adaptation offers particularly valuable lessons.
-Here's how he transformed his approach:
+Mike's journey with technology adaptation offers particularly valuable lessons.\ Here's how he transformed his approach:
 
 \begin{center}
 \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X >{\centering\arraybackslash}X >{\raggedright\arraybackslash}X}
@@ -3491,8 +3489,7 @@ Mike's solution to the delivery challenge became what I call the ``Hub and Spoke
 
 \section{UAE Case Study: Ahmed's Partnership Mastery}\label{sec:uae-case-study:-ahmed's-partnership-mastery}
 
-Ahmed's story is particularly interesting because it shows how traditional trading expertise can be enhanced through strategic local partnerships.\ ``In Dubai,'' he said during a strategy sessions, ``relationships matter.\ But in Nigeria, they're everything.''
-
+Ahmed's story is particularly interesting because it shows how traditional trading expertise can be enhanced through strategic local partnerships.\ ``In Dubai, '' he said during a strategy sessions, ``relationships matter.\ But in Nigeria, they're everything.''
 \subsection{Partnership Development Framework}\label{subsec:partnership-development-framework}
 \begin{tcolorbox}[colback=white,colframe=primary,title=\textbf{Ahmed's Partnership Matrix}]
 \begin{enumerate}
@@ -3563,7 +3560,6 @@ Lisa's journey is a masterclass in combining sustainability with scalability.\ W
     \end{itemize}
 \end{enumerate}
 \end{tcolorbox}
-
 \section{Key Lessons Learned}\label{sec:key-lessons-learned}
 
 Looking across these success stories, several universal principles emerge:
