@@ -52,7 +52,7 @@ jobs:
         with:
           working_directory: ./
           root_file: main.tex
-          args: '-jobname=nigerian_biz_ops_blueprint_ebook'
+          args: '-jobname=nigerian_business_insiders_playbook'
           latexmk_use_xelatex: true
 
       - name: Convert to EPUB
@@ -61,12 +61,14 @@ jobs:
           pandoc -f latex -t markdown main.tex -o temp.md
           
           # Convert markdown to EPUB with metadata
-          pandoc temp.md -o nigerian_biz_ops_blueprint_ebook.epub \
-            --metadata title="The Nigerian Business Opportunity Blueprint" \
+          pandoc temp.md -o nigerian_business_insiders_playbook.epub \
+            --metadata title="The Nigerian Business Insider's Playbook" \
+            --metadata subtitle="The Underground Guide to Launching and Scaling Successful Ventures in Africa's Hottest Market" \
             --metadata author="Dele Omotosho" \
             --metadata date="$(date +%Y)" \
             --metadata language="en-US" \
             --metadata publisher="Counseal" \
+            --metadata description="How Smart Entrepreneurs Enter, Succeed, and Thrive in Nigeria's Multi-Billion Dollar Markets - Even Without Local Connections or Previous African Business Experience" \
             --toc --toc-depth=3 \
             --epub-cover-image=figures/book-cover.png \
             --css=epub.css
@@ -87,7 +89,7 @@ jobs:
 
       - name: Delete existing tag if present
         run: |
-          git tag -d ${{ env.RELEASE_VERSION }} || trueºº
+          git tag -d ${{ env.RELEASE_VERSION }} || true
           git push origin :refs/tags/${{ env.RELEASE_VERSION }} || true
         continue-on-error: true
 
@@ -102,7 +104,7 @@ jobs:
           tag: ${{ env.RELEASE_VERSION }}
           name: Release ${{ env.RELEASE_VERSION }}
           bodyFile: ${{ github.workspace }}-CHANGELOG.txt
-          artifacts: "nigerian_biz_ops_blueprint_ebook.pdf,nigerian_biz_ops_blueprint_ebook.epub"
+          artifacts: "nigerian_business_insiders_playbook.pdf,nigerian_business_insiders_playbook.epub"
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           replacesArtifacts: true
@@ -117,6 +119,6 @@ jobs:
 #            {
 #              "releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}",
 #              "version": "${{ env.RELEASE_VERSION }}",
-#              "pdfURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.pdf",
-#              "epubURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.epub"
+#              "pdfURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_business_insiders_playbook.pdf",
+#              "epubURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_business_insiders_playbook.epub"
 #            }

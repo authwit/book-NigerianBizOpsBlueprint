@@ -67,7 +67,7 @@ jobs:
         with:
           working_directory: ./
           root_file: main.tex
-          args: '-jobname=nigerian_biz_ops_blueprint_ebook'
+          args: '-jobname=nigerian_business_insiders_playbook'
           latexmk_use_xelatex: true
 
       - name: Convert to EPUB
@@ -76,12 +76,14 @@ jobs:
           pandoc -f latex -t markdown main.tex -o temp.md
           
           # Convert markdown to EPUB with metadata
-          pandoc temp.md -o nigerian_biz_ops_blueprint_ebook.epub \
-            --metadata title="The Nigerian Business Opportunity Blueprint" \
+          pandoc temp.md -o nigerian_business_insiders_playbook.epub \
+            --metadata title="The Nigerian Business Insider's Playbook" \
+            --metadata subtitle="The Underground Guide to Launching and Scaling Successful Ventures in Africa's Hottest Market" \
             --metadata author="Dele Omotosho" \
             --metadata date="$(date +%Y)" \
             --metadata language="en-US" \
             --metadata publisher="Counseal" \
+            --metadata description="How Smart Entrepreneurs Enter, Succeed, and Thrive in Nigeria's Multi-Billion Dollar Markets - Even Without Local Connections or Previous African Business Experience" \
             --toc --toc-depth=3 \
             --epub-cover-image=figures/book-cover.png \
             --css=epub.css
@@ -102,7 +104,7 @@ jobs:
 
       - name: Delete existing tag if present
         run: |
-          git tag -d ${{ env.RELEASE_VERSION }} || trueºº
+          git tag -d ${{ env.RELEASE_VERSION }} || true
           git push origin :refs/tags/${{ env.RELEASE_VERSION }} || true
         continue-on-error: true
 
@@ -117,7 +119,7 @@ jobs:
           tag: ${{ env.RELEASE_VERSION }}
           name: Release ${{ env.RELEASE_VERSION }}
           bodyFile: ${{ github.workspace }}-CHANGELOG.txt
-          artifacts: "nigerian_biz_ops_blueprint_ebook.pdf,nigerian_biz_ops_blueprint_ebook.epub"
+          artifacts: "nigerian_business_insiders_playbook.pdf,nigerian_business_insiders_playbook.epub"
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           replacesArtifacts: true
@@ -132,8 +134,8 @@ jobs:
 #            {
 #              "releaseURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/tag/${{ env.RELEASE_VERSION }}",
 #              "version": "${{ env.RELEASE_VERSION }}",
-#              "pdfURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.pdf",
-#              "epubURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_biz_ops_blueprint_ebook.epub"
+#              "pdfURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_business_insiders_playbook.pdf",
+#              "epubURL": "https://github.com/authwit/book-NigerianBizOpsBlueprint/releases/download/${{ env.RELEASE_VERSION }}/nigerian_business_insiders_playbook.epub"
 #            }
 ```
 
@@ -2632,11 +2634,13 @@ pandoc -f latex -t markdown main.tex -o temp.md
 
 # Convert markdown to EPUB with metadata
 pandoc temp.md -o nigerian_biz_ops_blueprint_ebook.epub \
-  --metadata title="The Nigerian Business Opportunity Blueprint" \
+  --metadata title="The Nigerian Business Insider's Playbook" \
+  --metadata subtitle="The Underground Guide to Launching and Scaling Successful Ventures in Africa's Hottest Market" \
   --metadata author="Dele Omotosho" \
   --metadata date="$(date +%Y)" \
   --metadata language="en-US" \
   --metadata publisher="Counseal" \
+  --metadata description="How Smart Entrepreneurs Enter, Succeed, and Thrive in Nigeria's Multi-Billion Dollar Markets - Even Without Local Connections or Previous African Business Experience" \
   --toc --toc-depth=3 \
   --epub-cover-image=figures/book-cover.png \
   --css=epub.css
@@ -2651,11 +2655,9 @@ open -a calibre nigerian_biz_ops_blueprint_ebook.epub
 # chapters/00-introduction.tex
 
 ```tex
-% chapters/00-introduction.tex
-
 \chapter*{Your Journey to Nigerian Market Entry}
 
-\section{Why Nigeria, Why Now: A Personal Journey}
+\section{Why Nigeria, Why Now: A Personal Journey}\label{sec:why-nigeria-why-now:-a-personal-journey}
 
 I still remember that day in 2015 when I found myself in the midst of facilitating a complex business deal in Nigeria. As someone who had built my career in Boston's vibrant software scene, working with multinational startups, I was struck by something that would change the trajectory of my professional life: the sheer complexity of getting legal proceedings moving forward in what should have been a straightforward transaction.
 
@@ -2675,7 +2677,7 @@ That's what led to the evolution of Counseal. We combined my experience with sta
 This book is designed to be both a comprehensive guide and a practical workbook. Each chapter builds upon the previous one while remaining independently valuable for your specific needs.
 \end{importantbox}
 
-Think of this book as your navigation system through what I call the "Business World Forest" of Nigeria. Just as no two entrepreneurs enter this forest the same way, this book adapts to your specific journey.
+Think of this book as your navigation system through what I call the ``Business World Forest'' of Nigeria. Just as no two entrepreneurs enter this forest the same way, this book adapts to your specific journey.
 
 Each chapter is built on three core principles:
 \begin{itemize}
@@ -2683,6 +2685,9 @@ Each chapter is built on three core principles:
     \item \textbf{Regional Context:} Your path will vary depending on where you're coming from – UK, US, UAE, or Canada
     \item \textbf{Active Learning:} This is a workbook as much as it is a guide. Expect to roll up your sleeves
 \end{itemize}
+
+Throughout The Nigerian Business Insider's Playbook, you'll find real stories, practical strategies, and insider knowledge that I've gathered from helping countless entrepreneurs navigate their way to success in Nigeria.
+
 
 \section{Quick Assessment: Is Nigerian Market Entry Right for You?}
 
@@ -2786,26 +2791,52 @@ Calculate your score:
 \textbf{Key starting point:} Begin with Sector-Specific Requirements in Chapter 2
 \end{regionalbox}
 
-\section{Accessing the Africa Growth Circle Community}
+\section{Understanding the Appendices}\label{sec:understanding-the-appendices}
 
-\begin{communitybox}
-Your book purchase includes access to our exclusive community at circle.counseal.com. Here you'll find:
+This book includes five comprehensive appendices designed to support your market entry journey:
+
 \begin{itemize}
-    \item Live case studies and updates
-    \item Fellow entrepreneurs on similar journeys
-    \item Regional discussion groups
-    \item Document templates and tools
-    \item Monthly expert office hours
+    \item \textbf{Appendix A: Document Templates}
+    Sector-specific templates for common business documents, contracts, and agreements, customized for Nigerian market requirements.
+
+    \item \textbf{Appendix B: Regulatory Compliance Checklists}
+    Detailed checklists for various sectors, helping you navigate regulatory requirements effectively.
+
+    \item \textbf{Appendix C: Service Provider Directory}
+    A curated list of verified service providers across legal, financial, technology, and other critical sectors.
+
+    \item \textbf{Appendix D: Industry Association Contacts}
+    Key industry associations and professional networks that can support your market entry.
+
+    \item \textbf{Appendix E: Regional Resource Guide}
+    Region-specific resources and support services available across different Nigerian markets.
 \end{itemize}
 
-Think of the book as your map and the community as your traveling companions. You'll need both for this journey.
-\end{communitybox}
+\section{Accessing Digital Resources}\label{sec:accessing-digital-resources}
 
-\section{A Final Word}
+To complement this book, we've created practical digital tools available at \href{https://viz.li/csl-book-ngbiz}{viz.li/csl-book-ngbiz}:
+
+\begin{itemize}
+    \item \textbf{Interactive Financial Models}
+    Excel-based tools for budgeting, forecasting, and financial planning
+
+    \item \textbf{Market Entry Checklists}
+    PDF templates with interactive checkboxes and progress tracking
+
+    \item \textbf{Document Templates}
+    Customizable templates for essential business documentation
+
+    \item \textbf{Risk Assessment Tools}
+    Interactive worksheets for evaluating and mitigating risks
+\end{itemize}
+
+Each resource is designed to be immediately actionable and includes step-by-step instructions for practical implementation.
+
+\section{A Final Word}\label{sec:a-final-word}
 
 As we begin this journey together, I want to share something I've learned from my years straddling both global tech and Nigerian business environments: Nigeria isn't just another market to enter – it's a business ecosystem to understand, appreciate, and become part of. Every challenge you'll read about in the coming chapters is also an opportunity. Every cultural difference is a chance to innovate. Every regulatory hurdle is a barrier to entry for your less-prepared competitors.
 
-In my transition from building software in Boston to facilitating market entry in Lagos, I've learned that success here doesn't always follow the patterns you might be familiar with. But that's exactly why the opportunities are so extraordinary. As we say in Nigeria, "The same sun that melts wax hardens clay." Your success will depend not just on what you do, but on how well you adapt your approach to local realities.
+In my transition from building software in Boston to facilitating market entry in Lagos, I've learned that success here doesn't always follow the patterns you might be familiar with. But that's exactly why the opportunities are so extraordinary. As we say in Nigeria, ``The same sun that melts wax hardens clay.'' Your success will depend not just on what you do, but on how well you adapt your approach to local realities.
 
 Ready to begin? Turn to Chapter 1, but keep this introduction handy – you'll want to revisit that assessment as your journey progresses.
 
@@ -2817,18 +2848,13 @@ Founder, Counseal.com\\
 Lagos, Nigeria}
 \end{flushright}
 
-% End of chapter workshop
 \begin{workshopbox}
 \textbf{Introduction Action Items}
 \begin{itemize}
     \item Complete the Market Entry Readiness Assessment
     \item Identify your regional priority chapters
-    \item Set up your Africa Growth Circle account
-    \item \begin{itemize}
-              \item Go to circle.counseal.com
-              \item Connect with your regional discussion group
-               \item Download the digital resources for this book
-    \end{itemize}
+    \item Download the digital resources for this book at \href{https://viz.li/csl-book-ngbiz}{viz.li/csl-book-ngbiz}
+    \item Review the appendices relevant to your sector
 \end{itemize}
 \end{workshopbox}
 
@@ -2877,13 +2903,13 @@ Let's address some common misconceptions with real-world context:
 Think of Nigeria's market as a powerful river system, where three main currents create unique opportunities:
 
 \subsection{The Scale Advantage}\label{subsec:the-scale-advantage}
-When a Canadian agritech company wanted to expand here, their initial pilot with 100 farmers quickly scaled to 10,000.\ Why?
-Because in Nigeria, word of mouth travels fast in connected communities.\ The same infrastructure investment that serves 100 can often serve 10,000 with minimal additional cost.
+When a Canadian agritech company wanted to expand here, their initial pilot with 100 farmers quickly scaled to 1,000.\ Why?
+Because in Nigeria, word of mouth travels fast in connected communities.\ The same infrastructure investment that serves 100 can often serve 1,000 with minimal additional cost.
 
 \begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Scale Impact Examples}]
 \begin{itemize}
     \item A payment solution reaching 1 million users within 6 months of launch
-    \item An educational platform scaling from 500 to 5,000 students in one academic year
+    \item An educational platform scaling from 500 to 5,000 students in one academic year,
     \item A logistics solution expanding from 3 to 15 cities using the same core infrastructure
 \end{itemize}
 \end{tcolorbox}
@@ -5110,7 +5136,6 @@ I was sitting with Sarah in her Lagos office, now significantly expanded from wh
 
 Her question strikes at the heart of what every forward-thinking entrepreneur in Nigeria needs to consider. The answer lies not just in predicting the future, but in building businesses resilient enough to thrive in any future.
 
-
 \section{Understanding Tomorrow's Market}\label{sec:understanding-tomorrow}
 
 Let me share something I learned while helping businesses navigate Nigeria's evolving landscape: The most successful companies don't just adapt to change --- they position themselves to benefit from it. Here's what I call the ``Triple Wave'' that will shape Nigeria's business environment through 2025:
@@ -5146,14 +5171,13 @@ Nigeria's consumer landscape is transforming in three critical ways:
     \item Expanding middle class through consumer credit reforms
 \end{itemize}
 
-
 \section{Building Your Future-Ready Framework}\label{sec:future-ready-framework}
 
 When Mike asked me about preparing his e-commerce platform for 2025, I shared what I call the ``Future-Ready Matrix.'' Here's how to implement it:
 
 \subsection{Technology Foundation}\label{subsec:tech-foundation}
 
-Start with what I call the ``2025+ Tech Stack'':
+Start with what I call the ``2025 Tech Stack'':
 
 \begin{itemize}
     \item \textbf{Core Infrastructure}
@@ -5225,10 +5249,9 @@ Mike's e-commerce platform leveraged SCALE for future growth:
     \end{itemize}
 \end{itemize}
 
-
 \section{Workforce Evolution}\label{sec:workforce-evolution}
 
-An AgriTech's success taught us valuable lessons about future-ready teams:
+Lisa's AgriTech success taught us valuable lessons about future-ready teams:
 
 \subsection{Skill Development}\label{subsec:skill-development}
 \begin{itemize}
@@ -5246,10 +5269,9 @@ An AgriTech's success taught us valuable lessons about future-ready teams:
     \item Knowledge sharing systems
 \end{itemize}
 
-
 \section{Risk Management 2025}\label{sec:risk-2025}
 
-We helped Sarah implement what I call the ``Future Risk Framework'':
+I helped Sarah implement what I call the ``Future Risk Framework'':
 
 \begin{itemize}
     \item \textbf{Technology Risks}
@@ -5277,8 +5299,7 @@ We helped Sarah implement what I call the ``Future Risk Framework'':
     \end{itemize}
 \end{itemize}
 
-
-\section{Implementation Workshop}\label{sec:implementation-workshop-1}
+\section{Implementation Workshop}\label{sec:implementation-workshop-main}
 
 Let's turn these insights into action:
 
@@ -5320,6 +5341,8 @@ To support your future-proofing journey, I've created several practical tools av
     \item \textbf{Risk Assessment Matrix}
     Customizable template with Nigerian market-specific factors
 
+    \item \textbf{Implementation Timeline Generator}
+    Visual project management tool for transformation planning
 \end{itemize}
 
 Remember what I told Sarah when she worried about getting everything perfect: ``The future isn't about predicting every change --- it's about building a business that can adapt to any change.''
@@ -5327,42 +5350,102 @@ Remember what I told Sarah when she worried about getting everything perfect: ``
 As you implement these strategies, remember that success in Nigeria's evolving landscape doesn't come from having the most sophisticated plans, but from having the most adaptable ones. The entrepreneurs who will thrive in 2025 and beyond are those building resilient, adaptable businesses today.
 
 \begin{importantbox}
-    With projected GDP growth of 4.12\% in 2025 and significant reforms underway, Nigeria's business landscape is evolving rapidly. Your success will depend not on predicting every change, but on building a business that can adapt to and thrive in any future scenario.
+With projected GDP growth of 4.12\% in 2025 and significant reforms underway, Nigeria's business landscape is evolving rapidly. Your success will depend not on predicting every change, but on building a business that can adapt to and thrive in any future scenario.
 \end{importantbox}
 
 \begin{workshopbox}
-    \textbf{Future-Proofing Action Plan}
+\textbf{Future-Proofing Action Plan}
 
-    1. Technology Readiness
-    \begin{itemize}
-        \item Current capabilities: \_\_\_\_\_\_\_\_\_
-        \item Required upgrades: \_\_\_\_\_\_\_\_\_
-        \item Implementation timeline: \_\_\_\_\_\_\_\_\_
-    \end{itemize}
+1. Technology Readiness
+\begin{itemize}
+    \item Current capabilities: \_\_\_\_\_\_\_\_\_
+    \item Required upgrades: \_\_\_\_\_\_\_\_\_
+    \item Implementation timeline: \_\_\_\_\_\_\_\_\_
+\end{itemize}
 
-    2. Market Evolution
-    \begin{itemize}
-        \item Growth opportunities: \_\_\_\_\_\_\_\_\_
-        \item Required resources: \_\_\_\_\_\_\_\_\_
-        \item Action steps: \_\_\_\_\_\_\_\_\_
-    \end{itemize}
+2. Market Evolution
+\begin{itemize}
+    \item Growth opportunities: \_\_\_\_\_\_\_\_\_
+    \item Required resources: \_\_\_\_\_\_\_\_\_
+    \item Action steps: \_\_\_\_\_\_\_\_\_
+\end{itemize}
 
-    3. Risk Preparation
-    \begin{itemize}
-        \item Key risks: \_\_\_\_\_\_\_\_\_
-        \item Mitigation strategies: \_\_\_\_\_\_\_\_\_
-        \item Monitoring plan: \_\_\_\_\_\_\_\_\_
-    \end{itemize}
+3. Risk Preparation
+\begin{itemize}
+    \item Key risks: \_\_\_\_\_\_\_\_\_
+    \item Mitigation strategies: \_\_\_\_\_\_\_\_\_
+    \item Monitoring plan: \_\_\_\_\_\_\_\_\_
+\end{itemize}
 \end{workshopbox}
 
 \begin{communitybox}
-    Access additional future-proofing resources at \href{https://viz.li/csl-book-ngbiz}{viz.li/csl-book-ngbiz}:
-    \begin{itemize}
-        \item Future-Proofing Strategy Templates
-        \item Technology Investment Calculator
-    \end{itemize}
-    Each tool includes step-by-step instructions and can be customized for your specific business needs.
+Access additional future-proofing resources at viz.li/csl-book-ngbiz:
+\begin{itemize}
+    \item Future-Proofing Strategy Templates
+    \item Technology Investment Calculator
+    \item Risk Assessment Tools
+    \item Implementation Guides
+\end{itemize}
+Each tool includes step-by-step instructions and can be customized for your specific business needs.
 \end{communitybox}
+
+\section{Conclusion: Your Nigerian Journey}\label{sec:conclusion}
+
+As we conclude The Nigerian Business Insider's Playbook, let me share something I told Sarah recently as we reflected on her progress from that first nervous meeting to her current success: ``The real opportunity in Nigeria isn't just in the market size or growth numbers --- it's in the chance to build something truly meaningful.''
+
+Throughout this book, we've explored:
+
+\begin{itemize}
+    \item \textbf{Understanding the Real Nigeria} (Chapter 1)
+    Moving beyond headlines to grasp the true dynamics of Africa's largest market
+
+    \item \textbf{Strategic Entry} (Chapters 2-4)
+    Building a solid foundation through careful planning, strong relationships, and strategic positioning
+
+    \item \textbf{Operational Excellence} (Chapters 5-8)
+    Mastering the practical aspects of finance, risk management, networking, and technology
+
+    \item \textbf{Sustainable Growth} (Chapters 9-10)
+    Creating resilient businesses ready for both today's challenges and tomorrow's opportunities
+\end{itemize}
+
+But more importantly, we've seen these principles come to life through the stories of entrepreneurs like Sarah, Mike, Lisa, and Ahmed --- real people who transformed their Nigerian business dreams into reality.
+
+The economic indicators paint an encouraging picture: 4.12\% GDP growth projected for 2025, urbanization exceeding 54\%, internet penetration at 45.57\%, and significant reforms reshaping the financial landscape. But as I always tell entrepreneurs, these numbers aren't just statistics --- they're opportunities waiting for the right vision and execution.
+
+Your next steps should be:
+
+\begin{enumerate}
+    \item Review your Market Entry Readiness Assessment from Chapter 1
+    \item Download and complete the implementation tools from viz.li/csl-book-ngbiz
+    \item Begin building your local network using the frameworks from Chapter 7
+    \item Create your 90-day action plan following Chapter 4's guidelines
+\end{enumerate}
+
+Remember the Yoruba proverb I shared earlier: ``Ọ̀nà kan ò wọ ọjà'' --- there isn't just one path to the market. Your journey in Nigeria will be uniquely yours, but you don't have to walk it alone. The principles, tools, and insights in this book, combined with the resources at viz.li/csl-book-ngbiz, are here to guide your steps.
+
+As you move forward, remember what that UK entrepreneur told me after successfully launching his business: ``Nigeria didn't just give me a market --- it gave me a new way of seeing business opportunities everywhere.''
+
+Your Nigerian journey starts now. Make it count.
+
+As I've shared throughout this book, successful market entry isn't just about having the right information --- it's about having the right support. If you'd like to continue this conversation or need guidance on your Nigerian market journey, you can reach me and my team through:
+
+\begin{itemize}
+    \item Website: \href{https://counseal.com}{counseal.com}
+    \item Phone/WhatsApp: \href{https://wa.me/2348123307731}{+234 812 330 7731}
+    \item Email: \href{mailto:ask@counseal.com?subject=Question%20from%20Book}{ask@counseal.com}
+    \item Twitter: \href{https://twitter.com/getcounseal}{@getcounseal}
+\end{itemize}
+
+Whether you're ready to start your Nigerian market entry journey or just exploring possibilities, our team is here to help turn your business vision into reality. Check counseal.com for the latest market insights, success stories, and implementation support.
+
+Remember, your success in Nigeria is not just about what you know, but who you know. Let's make your Nigerian business dreams a reality.
+
+\begin{flushright}
+\textit{-- Dele Omotosho\\
+Lagos, Nigeria\\
+February 2025}
+\end{flushright}
 ```
 
 # epub.css
@@ -5688,17 +5771,17 @@ This is a binary file of the type: Image
     \begin{titlepage}
         \centering
         \vspace*{2cm}
-        {\Huge\bfseries\color{primarydark} The Nigerian Business\\Opportunity Blueprint\par}
+        {\Huge\bfseries\color{primarydark} The Nigerian Business\\Insider's Playbook\par}
         \vspace{1cm}
-        {\Large\color{primary} Your Global Guide to Nigerian Market Entry\par}
+        {\Large\color{primary} The Underground Guide to Launching and Scaling\\Successful Ventures in Africa's Hottest Market\par}
+        \vspace{1cm}
+        {\large\itshape How Smart Entrepreneurs Enter, Succeed, and Thrive\\in Nigeria's Multi-Billion Dollar Markets -\\Even Without Local Connections or\\Previous African Business Experience\par}
         \vspace{2cm}
-        {\Large\itshape Dele Omotosho, Counseal.com\par}
+        {\Large\bfseries By Dele Omotosho\par}
+        \vspace{0.5cm}
+        {\large Founder, \href{https://counseal.com}{Counseal.com}\par}
         \vspace{1cm}
-        {\large Empowering Nigerian Dreams Through Global Access\par}
-        \vfill
-        {\large Join the Africa Growth Circle Community at circle.counseal.com\par}
-        \vspace{1cm}
-        {\large \currentdate\par}
+        {\large 2025\par}
     \end{titlepage}
 
     \tableofcontents
@@ -5728,10 +5811,6 @@ This is a binary file of the type: Image
 \end{document}
 ```
 
-# nigerian_biz_ops_blueprint_ebook.epub
-
-This is a binary file of the type: Binary
-
 # package.json
 
 ```json
@@ -5741,17 +5820,44 @@ This is a binary file of the type: Binary
   },
   "scripts": {
     "digest": "npx ai-digest -o book.md",
-    "build-pdf": "pdflatex -file-line-error -interaction=nonstopmode -synctex=1 -output-format=pdf -jobname=nigerian_biz_ops_blueprint_ebook -output-directory=/Users/deletosh/@projects/book-NigerianBizOpsBlueprint/out -aux-directory=/Users/deletosh/@projects/book-NigerianBizOpsBlueprint/auxil main.tex",
+    "build-pdf": "pdflatex -file-line-error -interaction=nonstopmode -synctex=1 -output-format=pdf -jobname=nigerian_business_insiders_playbook -output-directory=/Users/deletosh/@projects/book-NigerianBizOpsBlueprint/out -aux-directory=/Users/deletosh/@projects/book-NigerianBizOpsBlueprint/auxil main.tex",
     "build-epub": "./build-epub.sh",
     "build": "yarn build-epub && yarn build-pdf"
   }
 }
-
 ```
 
 # readme.md
 
 ```md
-### The Nigerian Business Opportunity Blueprint: Your Global Guide to Nigerian Market Entry
+# The Nigerian Business Insider's Playbook
+
+*The Underground Guide to Launching and Scaling Successful Ventures in Africa's Hottest Market*
+
+## About This Book
+
+This comprehensive guide reveals how smart entrepreneurs can enter, succeed, and thrive in Nigeria's multi-billion dollar markets - even without local connections or previous African business experience. Written by Dele Omotosho, founder of Counseal and expert in Nigerian market entry, this book provides practical, actionable insights for global entrepreneurs looking to tap into Africa's largest economy.
+
+## Key Features
+
+- Real-world case studies and success stories
+- Practical implementation frameworks
+- Step-by-step market entry guides
+- Risk management strategies
+- Cultural navigation insights
+- Networking and partnership guidance
+
+## Additional Resources
+
+Download complementary tools and templates at [viz.li/csl-book-ngbiz](https://viz.li/csl-book-ngbiz)
+
+## About the Author
+
+Dele Omotosho bridges the gap between global business practices and Nigerian market opportunities. Through Counseal, he has helped numerous entrepreneurs successfully enter and scale in the Nigerian market.
+
+## Contact
+
+- Website: [counseal.com](https://counseal.com)
+- Email: ask@counseal.com
 ```
 
