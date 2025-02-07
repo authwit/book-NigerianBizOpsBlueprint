@@ -189,7 +189,7 @@ delimiters = "[]/"
 \chapter{Industry Association Contacts}\label{ch:industry-associations}
 
 \begin{importantbox}
-This directory provides contact information for key industry associations in Nigeria. For the most current contact details and additional associations, visit the Africa Growth Circle platform at circle.counseal.com.
+This directory provides contact information for key industry associations in Nigeria. For the most current contact details and additional associations, visit the Africa Growth Circle platform atcounseal.com/book-ngbiz.
 \end{importantbox}
 
 \vspace{2em}
@@ -365,7 +365,7 @@ Contact information may change over time. Always verify current details through 
 \vspace{1em}
 
 \begin{communitybox}
-Access regularly updated association contacts, event calendars, and membership benefits on the Africa Growth Circle platform at circle.counseal.com.
+Access regularly updated association contacts, event calendars, and membership benefits on the Africa Growth Circle platform atcounseal.com/book-ngbiz.
 \end{communitybox}
 
 \vspace{1em}
@@ -404,7 +404,7 @@ Access regularly updated association contacts, event calendars, and membership b
 \chapter{Regulatory Compliance Checklists}\label{ch:regulatory-compliance}
 
 \begin{importantbox}
-    These checklists provide structured guidance for meeting regulatory requirements. Updated versions are maintained on the Africa Growth Circle platform at circle.counseal.com.
+    These checklists provide structured guidance for meeting regulatory requirements. Updated versions are maintained on the Africa Growth Circle platform atcounseal.com/book-ngbiz.
 \end{importantbox}
 
 \vspace{2em}
@@ -858,7 +858,7 @@ Access regularly updated association contacts, event calendars, and membership b
 \vspace{1em}
 
 \begin{communitybox}
-    Access regularly updated compliance checklists, regulatory alerts, and expert guidance on the Africa Growth Circle platform at circle.counseal.com.
+    Access regularly updated compliance checklists, regulatory alerts, and expert guidance on the Africa Growth Circle platform atcounseal.com/book-ngbiz.
 \end{communitybox}
 
 \vspace{1em}
@@ -1726,7 +1726,7 @@ Service provider listings may change over time. Always verify current informatio
 \vspace{1em}
 
 \begin{communitybox}
-Access our complete, regularly updated service provider directory, including verified reviews and ratings, on the Africa Growth Circle platform at circle.counseal.com.
+Access our complete, regularly updated service provider directory, including verified reviews and ratings, on the Africa Growth Circle platform atcounseal.com/book-ngbiz.
 \end{communitybox}
 
 \vspace{1em}
@@ -1999,7 +1999,7 @@ Access our complete, regularly updated service provider directory, including ver
 \vspace{1em}
 
 \begin{communitybox}
-    Access regularly updated regional resources, including contact information, event calendars, and support services on the Africa Growth Circle platform at circle.counseal.com.
+    Access regularly updated regional resources, including contact information, event calendars, and support services on the Africa Growth Circle platform atcounseal.com/book-ngbiz.
 \end{communitybox}
 
 \vspace{1em}
@@ -2614,7 +2614,7 @@ Templates should always be reviewed by qualified legal counsel before use. While
 \end{warningbox}
 
 \begin{communitybox}
-Access regularly updated templates, sector-specific variations, and expert guidance on the Africa Growth Circle platform at circle.counseal.com. Our community members regularly share their experiences and best practices in using these templates effectively.
+Access regularly updated templates, sector-specific variations, and expert guidance on the Africa Growth Circle platform atcounseal.com/book-ngbiz. Our community members regularly share their experiences and best practices in using these templates effectively.
 \end{communitybox}
 ```
 
