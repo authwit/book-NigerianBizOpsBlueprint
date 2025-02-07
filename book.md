@@ -2877,7 +2877,7 @@ This chapter provides a clear, practical understanding of Nigeria's business env
 I remember sitting in a Boston coffee shop in 2015, meeting with a potential investor interested in Nigerian tech opportunities.\ As he stirred his cappuccino, he said something that still resonates: ``Dele, isn't it too risky?
 I mean, with all the\ldots'' He trailed off, gesturing vaguely at imagined chaos.
 
-Several weeks later, I watched that same investor standing in Victoria Island, Lagos, completely transformed.\ ``This isn't anything like what I expected,'' he admitted, watching streams of young professionals heading to their fintech jobs, banks, and digital agencies.\ ``Why doesn't anyone show this side of Nigeria?''
+Several weeks later, that same investor standing in Victoria Island, Lagos, completely transformed.\ ``This isn't anything like what I expected,'' he admitted, watching streams of young professionals heading to their fintech jobs, banks, and digital agencies.\ ``Why doesn't anyone show this side of Nigeria?''
 
 This disconnect between perception and reality is something I've encountered countless times in my journey from Boston's tech scene to building Counseal.
 Let's address some common misconceptions with real-world context:
@@ -2908,7 +2908,7 @@ Because in Nigeria, word of mouth travels fast in connected communities.\ The sa
 
 \begin{tcolorbox}[colback=white,colframe=primarydark,title=\textbf{Scale Impact Examples}]
 \begin{itemize}
-    \item A payment solution reaching 1 million users within 6 months of launch
+    \item A payment solution reaching half a million users within 6 months of launch
     \item An educational platform scaling from 500 to 5,000 students in one academic year,
     \item A logistics solution expanding from 3 to 15 cities using the same core infrastructure
 \end{itemize}
@@ -3000,7 +3000,7 @@ Access additional resources and connect with fellow entrepreneurs on the Africa 
     \item Expert office hours
     \item Peer networking events
 \end{itemize}
-Visit \href{https://viz.li/csl-book-circle}{circle.counseal.com} to join the conversation.
+Visit \href{https://viz.li/csl-book-ngbiz}{counseal.com} to join the conversation.
 \end{communitybox}
 
 \begin{importantbox}
